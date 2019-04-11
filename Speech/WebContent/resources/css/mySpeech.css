@@ -1,0 +1,263 @@
+@media(min-width:768px){
+    .padLR{
+        padding-left: 85px;
+        padding-right: 85px;
+    }
+}
+.selPad {
+    padding-left: 85px;
+    padding-right: 85px;
+    padding-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 10px;
+}
+
+.selPad2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom:21px;
+}
+.selPad2 div:nth-child(1) select {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align-last: center;
+    padding: 11px 20px;
+    width: 100%
+}
+.selPad2 div:nth-child(2) input {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align-last: center;
+    padding: 11px 0px;
+    width: 100%;
+}
+.selPad2 div:nth-child(3) {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align: center;
+    padding: 11px 0px;
+    width:100%
+}
+.btnListRecDate{
+    display:flex;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom:21px;
+    
+}
+.btnListRecDate .wcRecommend {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align: center;
+    padding: 11px 0px;
+    width:100%;
+    margin-right: 7.5px;
+
+}
+.btnListRecDate .wcDate{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align: center;
+    padding: 11px 0px;
+    width:100%;
+    margin-left: 7.5px;
+}
+
+.selPad div:nth-child(1) select {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    width: 100%;
+    height: 100%;
+    color: #00aeef;
+    text-align-last: center;
+}
+
+.selPad div:nth-child(2) {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    line-height: 40px;
+    color: #00aeef;
+    text-align: center;
+}
+
+.selPad div:nth-child(3) {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    line-height: 40px;
+    color: #00aeef;
+    text-align: center;
+}
+
+.selPad div:nth-child(4) {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    line-height: 40px;
+    color: #00aeef;
+    text-align: center;
+}
+
+.padLR .mySpeechListItem {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.padLR .mySpeechListItem .speechTag {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    padding: 11px 18px;
+    color: #00aeef;
+    font-weight: bold
+}
+
+.padLR .mySpeechListItem .mySpeechListBox {
+    padding-left: 28px;
+}
+
+.padLR .mySpeechListItem .mySpeechLeft {
+    display: flex;
+}
+
+.padLR .mySpeechListItem .mySpeechRight {
+    display: grid;
+}
+
+.padLR .mySpeechListItem .mySpeechLeft .mySpeechListBox .mySpeechTitleDiv {
+    font-size: 16px;
+    text-align: left;
+    line-height: 24px;
+    color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 50vw;
+}
+
+.padLR .mySpeechListItem .mySpeechLeft .mySpeechListBox .mySpeechRegDate {
+    color: #dedede;
+}
+
+.padLR .mySpeechListItem .mySpeechLeft .wcSpcTag{
+    padding: 11px 18px;
+    color:#00aeef;
+    font-family: NotoSans-Medium;
+    line-height: 20px;
+    font-size:20px;
+    font-weight: bold;
+
+}
+.padLR .mySpeechListItem .mySpeechLeft .wcSpcTitle{
+    padding: 11px 40px;
+    color:#00aeef;
+    font-family: NotoSans-Medium;
+    line-height: 20px;
+    font-size:20px;
+    font-weight: bold;
+
+}
+.padLR .mySpeechListItem  .wcSpcRecommend{
+    padding: 11px 0px;
+    color:#00aeef;
+    font-family: NotoSans-Medium;
+    line-height: 20px;
+    font-size:20px;
+    font-weight: bold;
+
+}
+.mySpeechRight{
+    color:#00aeef;
+    font-family: NotoSans-Medium;
+    line-height: 20px;
+    font-size:20px;
+}
+.padLR .spcQuestionRegisterTitle{
+    padding-bottom:2vw;
+    font-family: NotoSans-Medium;
+    font-size:20px;
+    color:#000000;
+    font-weight: bold
+}
+
+.padLR .spcQuestionRegTitle{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    color: #00aeef;
+    font-weight: bold;
+    padding:12px 0px;
+    width:30%;
+    margin-bottom:2vw;
+}
+.padLR .spcQuestionRegText{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    color: #00aeef;
+    font-weight: bold;
+    padding:12px 0px;
+    width:100%;
+    margin-bottom:2vw;
+}
+.padLR .spcQuestionRegText::placeholder{
+    color:#ebebeb;
+    font-size:15px;
+    padding:14px 0px;
+}
+.padLR .spcBtnList{
+    display: grid;grid-template-columns: 1fr 1fr
+}
+.padLR .spcBtnList .spcBtnListReg{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    color: #00aeef;
+    font-weight: bold;
+    padding:12px 0px;
+    margin-right: 7.5px;
+}
+
+.padLR .spcBtnList .spcBtnListDel{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    color: #00aeef;
+    font-weight: bold;
+    padding:12px 0px;
+    margin-left: 7.5px;
+}
