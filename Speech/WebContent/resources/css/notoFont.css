@@ -1,0 +1,8 @@
+@font-face {
+    font-family: NotoSansCJKkr-Regular;
+    src: url('/resources/kopo-fonts/NotoSansCJKkr-Regular.otf')
+}
+@font-face {
+    font-family: NotoSansCJKkr-Light;
+    src: url('/resources/kopo-fonts/NotoSansCJKkr-Light.otf')
+}

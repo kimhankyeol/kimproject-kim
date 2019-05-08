@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- JAVA와 연결할 Mapper 파일 설정 -->
+<mapper namespace="poly.persistance.mapper.UserMapper">
+	<select id="checkLogin" parameterType="UserDTO" resultType="integer">
+	SELECT 
+		COUNT(*)
+	FROM
+		USER
+	WHERE
+		userEmail=#{userEmail}
+	</select>
+
+	<insert id="insertUserRegSns" parameterType="UserDTO">
+	INSERT 
+		INTO USER
+		(
+		userName,
+		userEmail,
+		regdate,
+		snsVal
+		)
+		VALUES
+		(
+		#{userName},
+		#{userEmail},
+		now(),
+		#{snsVal}
+		)
+		<selectKey resultType="string" keyProperty="userNo" order="AFTER">
+		SELECT last_insert_id() FROM DUAL;
+		</selectKey> 
+	</insert>
+	<select id="getFindUserNo" parameterType="UserDTO" resultType="string">
+	SELECT
+		userNo
+	FROM
+		USER
+	WHERE
+		userEmail=#{userEmail} and snsVal=#{snsVal}
+	</select>
+</mapper>
+

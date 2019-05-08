@@ -1,0 +1,393 @@
+@media(min-width:768px){
+    .padLR{
+        padding-left: 85px;
+        padding-right: 85px;
+    }
+}
+
+.selPad {
+    padding-left: 85px;
+    padding-right: 85px;
+    padding-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 10px;
+}
+
+.selPad2{
+    display: grid;r
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom:21px;
+}
+.selPad2 div:nth-child(1) select {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align-last: center;
+    padding: 11px 20px;
+    width: 100%
+}
+.selPad2 div:nth-child(2) input {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align-last: center;
+    padding: 11px 0px;
+    width: 100%;
+}
+.selPad2 div:nth-child(3) {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align: center;
+    padding: 11px 0px;
+    width:100%
+}
+.btnListRecDate{
+    display:flex;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom:21px;
+    
+}
+.btnListRecDate .wcRecommend {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align: center;
+    padding: 11px 0px;
+    width:100%;
+    margin-right: 7.5px;
+
+}
+.btnListRecDate .wcDate{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    color: #00aeef;
+    text-align: center;
+    padding: 11px 0px;
+    width:100%;
+    margin-left: 7.5px;
+}
+
+.selPad div:nth-child(1) select {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    width: 100%;
+    height: 100%;
+    color: #00aeef;
+    text-align-last: center;
+}
+
+.selPad div:nth-child(2) {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    line-height: 40px;
+    color: #00aeef;
+    text-align: center;
+}
+
+.selPad div:nth-child(3) {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    line-height: 40px;
+    color: #00aeef;
+    text-align: center;
+}
+
+.selPad div:nth-child(4) {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 15px;
+    line-height: 40px;
+    color: #00aeef;
+    text-align: center;
+}
+
+.padLR .mySpeechListItem {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.padLR .mySpeechListItem .speechTag {
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    padding: 11px 18px;
+    color: #00aeef;
+    font-weight: bold
+}
+
+.padLR .mySpeechListItem .mySpeechListBox {
+    padding-left: 28px;
+}
+
+.padLR .mySpeechListItem .mySpeechLeft {
+    display: flex;
+}
+
+.padLR .mySpeechListItem .mySpeechRight {
+    display: grid;
+}
+
+.padLR .mySpeechListItem .mySpeechLeft .mySpeechListBox .mySpeechTitleDiv {
+    font-size: 16px;
+    text-align: left;
+    line-height: 24px;
+    color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 50vw;
+}
+
+.padLR .mySpeechListItem .mySpeechLeft .mySpeechListBox .mySpeechRegDate {
+    color: #dedede;
+}
+
+.padLR .mySpeechListItem .mySpeechLeft .wcSpcTag{
+    padding: 11px 18px;
+    color:#00aeef;
+    font-family: NotoSans-Medium;
+    line-height: 20px;
+    font-size:20px;
+    font-weight: bold;
+
+}
+.padLR .mySpeechListItem .mySpeechLeft .wcSpcTitle{
+    padding: 11px 40px;
+    color:#00aeef;
+    font-family: NotoSans-Medium;
+    line-height: 20px;
+    font-size:20px;
+    font-weight: bold;
+
+}
+.padLR .mySpeechListItem  .wcSpcRecommend{
+    padding: 11px 0px;
+    color:#00aeef;
+    font-family: NotoSans-Medium;
+    line-height: 20px;
+    font-size:20px;
+    font-weight: bold;
+
+}
+.mySpeechRight{
+    color:#00aeef;
+    font-family: NotoSans-Medium;
+    line-height: 20px;
+    font-size:20px;
+}
+.padLR .spcQuestionRegisterTitle{
+    padding-bottom:2vw;
+    font-family: NotoSans-Medium;
+    font-size:20px;
+    color:#000000;
+    font-weight: bold
+}
+
+.padLR .spcQuestionRegTitle{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    color: #00aeef;
+    font-weight: bold;
+    padding:12px 0px;
+    width:30%;
+    margin-bottom:2vw;
+}
+.padLR .spcQuestionRegText{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    color: #00aeef;
+    font-weight: bold;
+    padding:12px 0px;
+    width:100%;
+    margin-bottom:2vw;
+}
+.padLR .spcQuestionRegText::placeholder{
+    color:#ebebeb;
+    font-size:15px;
+    padding:14px 0px;
+}
+.padLR .spcBtnList{
+    display: grid;grid-template-columns: 1fr 1fr
+}
+.padLR .spcBtnList .spcBtnListReg{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    color: #00aeef;
+    font-weight: bold;
+    padding:12px 0px;
+    margin-right: 7.5px;
+}
+
+.padLR .spcBtnList .spcBtnListDel{
+    border-radius: 20px;
+    border: 1px solid #00aeef;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: NotoSans-Medium;
+    color: #00aeef;
+    font-weight: bold;
+    padding:12px 0px;
+    margin-left: 7.5px;
+}
+
+.padLR .padLR9 {
+	padding-left: 9px;
+	padding-right: 9px;
+	display: flex;
+	color: #00aeef;
+}
+
+.padLR .padLR9 div:nth-child(1) {
+	margin-right: 5px;
+	width: 30%
+}
+
+.padLR .padLR9 div:nth-child(1) select {
+	width: 100%;
+	text-align: center;
+	font-size: 15px;
+	padding: 11px 0px 11px 0px;
+	border-radius: 20px;
+	border: 1px solid #00aeef;
+	height: 42px;
+	color: #00aeef;
+}
+
+.padLR .padLR9 div:nth-child(2) {
+	margin-right: 5px;
+	width: 40%
+}
+
+.padLR .padLR9 div:nth-child(2) input[type=text] {
+	width: 100%;
+	border-radius: 20px;
+	border: 1px solid #00aeef;
+	height: 40px;
+	padding: 0px
+}
+
+.padLR .padLR9 div:nth-child(3) {
+	width: 30%;
+	font-size: 15px;
+	padding: 9px 0px 9px 0px;
+	text-align: center;
+	border-radius: 20px;
+	border: 1px solid #00aeef;
+}
+
+.padLR .padLR82 {
+	padding-left: 82px;
+	padding-right: 82px;
+	display: flex;
+	padding-top: 21px;
+	justify-content: center;
+	color: #00aeef;
+}
+@media(max-width:375px){
+	.padLR .padLR82{
+	padding-left:0px;
+	padding-right:0px;
+	}
+}
+.padLR .padLR82 .selActive{
+	color:white;
+	background: #00aeef;
+}
+
+.padLR .padLR82 div:nth-child(1) {
+	margin-right: 15px;
+	text-align: center;
+	border-radius: 20px;
+	border: 1px solid #00aeef;
+	font-size: 15px;
+	padding: 11px 20px 11px 20px;
+	width: 33%
+}
+
+.padLR .padLR82 div:nth-child(2) {
+	text-align: center;
+	border-radius: 20px;
+	border: 1px solid #00aeef;
+	font-size: 15px;
+	padding: 11px 20px 11px 20px;
+	width: 33%;
+	border-radius: 20px;
+	border: 1px solid #00aeef;
+	font-size: 15px;
+	padding: 11px 20px 11px 20px;
+	width: 33%
+}
+
+.padLR10 {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 21px;
+	display: flex;
+	color: #00aeef;
+}
+
+.padLR10 .spcTagScroll {
+	width: 25%;
+	overflow-x: scroll;
+	display: -webkit-box;
+}
+
+.padLR10 .spcTagScroll .borderDiv {
+	border-radius: 20px;
+    color: #00aeef;
+    border: 1px solid #00aeef;
+    padding: 15px 15px;
+    margin-right: 10px;
+    font-size: 0.874em;
+    text-align: left;
+    line-height: 1.248em;
+    letter-spacing: -0.044em;
+}
+.padLR10 .spcTitle{
+width:50%;
+}
+.padLR10 .spcTitle div:nth-child(1){
+	color: black;
+	display: inline-block;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.padLR10 .spcTitle div:nth-child(2) {
+	color: #a6adb4
+}
