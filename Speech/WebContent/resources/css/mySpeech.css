@@ -391,3 +391,21 @@ width:50%;
 .padLR10 .spcTitle div:nth-child(2) {
 	color: #a6adb4
 }
+
+.padLR .spcJobIns{
+font-size:15px; 
+border-radius: 20px; 
+border:1px solid #00aeef;
+padding:13px 30px; 
+display: -webkit-inline-box;
+margin-bottom:15px
+}
+.padLR .spcJobInsText{
+display: -webkit-box;
+border-radius: 20px; 
+border:1px solid #00aeef;
+width:100%;
+text-align:center;
+padding:30px 0px;
+margin-bottom:30px
+}

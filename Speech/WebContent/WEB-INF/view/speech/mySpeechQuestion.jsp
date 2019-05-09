@@ -33,8 +33,8 @@
    		</div>
    </div>
    <div class="padLR82">
-   		<div class="mySpcRegister" onclick="">등록</div>
-   		<div class="mySpcDelete" onclick="">삭제</div>   
+   		<div class="mySpcRegister" onclick="mySpcRegDel.reg()">등록</div>
+   		<div class="mySpcDelete" onclick="mySpcRegDel.del()">삭제</div>   
    </div>
    <div class="padLR10">
    		<div style="width:25%">태그</div>

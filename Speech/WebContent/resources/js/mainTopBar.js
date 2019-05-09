@@ -32,7 +32,19 @@ const recomDateSelect = {
 			recomDateSelect.spcDateOrder[0].classList.add('selActive');
 			//비동기 처리 논리 로직
 		}
-		
+}
+const mySpcRegDel = {
+		mySpcRegister : document.getElementsByClassName('mySpcRegister'),
+		mySpcDelete : document.getElementsByClassName('mySpcDelete'),
+		reg : function(){
+			mySpcRegDel.mySpcRegister[0].classList.add('selActive');
+			mySpcRegDel.mySpcDelete[0].classList.remove('selActive');
+			pageMove.speech('insertView');
+			},
+		del : function(){
+			mySpcRegDel.mySpcRegister[0].classList.remove('selActive');
+			mySpcRegDel.mySpcDelete[0].classList.add('selActive');
+		}
 }
 
 const pageMove = {
@@ -47,6 +59,13 @@ const pageMove = {
 		},
 		loginCbHref:function(name,email,snsVal){
 			location.href="loginCallback.do?name="+name+"&email="+email+"&snsVal="+snsVal;
+		}
+}
+
+const frmSubmit = {
+		spcInsertSubmit : function(){
+			const spcInsert = document.getElementById('spcInsert');
+			spcInsert.submit();
 		}
 }
 
