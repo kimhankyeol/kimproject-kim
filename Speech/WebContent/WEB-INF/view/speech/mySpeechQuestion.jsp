@@ -39,7 +39,7 @@
    <div class="padLR10">
    		<div style="width:25%">태그</div>
    		<div style="width:50%">제목</div>
-   		<div style="width:25%">추천</div>
+   		<div style="width:25%">체크</div>
    </div>
    <div class="padLR10">
    		<div class="spcTagScroll">

@@ -18,14 +18,16 @@
        <div>Dr.Speech의고객</div>
        <div><b><%=session.getAttribute("userName") %></b>님</div>
 	</div>
-	<div style="font-size:20px; line-height: 30px">
+	<div style="font-size:20px; line-height: 30px; margin-bottom:20px;">
    	면접 질문 등록
 	</div>
 	<form id="spcInsert" action="/speech/speechInsertProc.do">
 		<div class="spcJobIns">
 		업계
 		</div>
-	    <input type="text" class="spcJobInsText" name="spcJobTag" placeholder="최대 3글자, 태그 최대 2개까지 " style=""/>
+		<div id="tagAdd" style="display:flex"></div>
+		<div id="tagError"></div>
+	    <input type="text" class="spcJobInsText"  id="tagSpcKeyPress" onkeypress="tagKeyPress.addTag()" placeholder=" 최대 5글자,태그 최대 3개 ,태그명 입력후 엔터 예)#IT #이 구분자가 됩니다. " />
 		<div class="spcJobIns">
 		제목
 		</div>
@@ -34,6 +36,7 @@
 		질문
 		</div>
 		<input type="text" class="spcJobInsText" name="spcJobQuestion" placeholder="질문은 최대 100자이내로 작성해주세요." />	
+		<input type="hidden" name="userNo" value="<%=session.getAttribute("userNo") %>" />
 	</form>
 	<div style="display:flex;justify-content: center">
 		<div class="spcJobIns"  onclick="frmSubmit.spcInsertSubmit()" style="margin-right:10px;">

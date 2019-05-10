@@ -1,4 +1,8 @@
 package poly.controller;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import poly.dto.SpeechDTO;
 import poly.service.ISpeechService;
@@ -22,11 +27,10 @@ public class SpeechController {
 	private ISpeechService speechService;
 
 	@RequestMapping(value="/list")
-	public String main(HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session) throws Exception{
+	public String main(HttpSession session) throws Exception{
 		if(session.getAttribute("userName")==null) {
 			return "/home";
 		}
-	
 		return "/speech/mainSelectList";
 	}
 	@RequestMapping(value="/mySpeechQuestion")
@@ -42,18 +46,16 @@ public class SpeechController {
 		return "/speech/insertView";
 	}
 	@RequestMapping(value="/speechInsertProc")
-	public String speechInsertProc(HttpServletRequest req) throws Exception{
-		String spcJobTag = req.getParameter("spcJobTag");
-		String spcJobTitle = req.getParameter("spcJobTitle");
-		String spcJobQuestion = req.getParameter("spcJobQuestion");
-		
-		SpeechDTO sDTO = new SpeechDTO();
-		sDTO.setSpcJobTag(spcJobTag);
-		sDTO.setSpcJobTitle(spcJobTitle);
-		sDTO.setSpcJobQuestion(spcJobQuestion);
-		
-		int result = speechService.insertSpeech(sDTO);
-		return null;
+	public String speechInsertProc(@RequestParam Map<String,String> map, @RequestParam(value="spcJobTag") String[] spcJobTag , Model model ,HttpServletRequest req) throws Exception{
+		int result = speechService.insertSpeech(map,spcJobTag);
+		String msg , url ;
+		if(result == 1) {
+			msg="등록되었습니다.";
+			url="/speech/list.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+		}
+		return "/alert";
 	}
 	
 	

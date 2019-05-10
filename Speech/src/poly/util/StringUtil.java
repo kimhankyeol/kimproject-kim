@@ -1,8 +1,13 @@
 package poly.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParser.Feature;
@@ -78,5 +83,16 @@ public class StringUtil {
 		
 		return resultStr;
 	}
+	public static String hashTagDel(String[] spcJobTag) {
+		String target="#";
+		for(int i = 0 ; i < spcJobTag.length;i++) {
+			System.out.println(spcJobTag[i].substring(1,spcJobTag[i].length()));
+		}
+		
+		return spcJobTag.toString();
+	}
+	
+
+	
 
 }

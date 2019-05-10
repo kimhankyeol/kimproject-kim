@@ -1,10 +1,12 @@
 package poly.service;
 
-import poly.dto.SpeechDTO;
+import java.util.List;
+import java.util.Map;
+
 
 public interface ISpeechService {
 
-	public int insertSpeech(SpeechDTO sDTO) throws Exception;
+	public int insertSpeech(Map<String, String> map, String[] spcJobTag) throws Exception;
 
 
 }
