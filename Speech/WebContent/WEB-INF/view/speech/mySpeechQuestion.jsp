@@ -1,5 +1,9 @@
+<%@page import="poly.util.StringUtil"%>
+<%@page import="poly.dto.SpeechDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% List<SpeechDTO> sList =(List<SpeechDTO>)request.getAttribute("sList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,27 +41,28 @@
    		<div class="mySpcDelete" onclick="mySpcRegDel.del()">삭제</div>   
    </div>
    <div class="padLR10">
-   		<div style="width:25%">태그</div>
-   		<div style="width:50%">제목</div>
-   		<div style="width:25%">체크</div>
+   		<div style="width:25%;text-align: center">태그</div>
+   		<div style="width:50%;">제목</div>
+   		<div style="width:25%;text-align: center">체크</div>
    </div>
+   <%for(int i = 0 ; i <sList.size(); i++){ %>
    <div class="padLR10">
    		<div class="spcTagScroll">
+   			<%for(int j = 0; j < StringUtil.hashTagDel(sList.get(i).getSpcJobTag()).length;j++){ %>
    			<div class="borderDiv">
-   			#IT
+   			<%=StringUtil.hashTagDel(sList.get(i).getSpcJobTag())[j]%>
    			</div>
- 			<div class="borderDiv">
- 			#경제
- 			</div>  			
+ 			<%} %>
    		</div>
    		<div class="spcTitle">
-   			<div>IT-Dispatcher에 대해 설명해주세요 제일 긴글입니다.</div>
-   			<div>2019-12-12</div>
+   			<div><%=sList.get(i).getSpcJobTitle() %></div>
+   			<div><%=sList.get(i).getRegdate() %></div>
    		</div>
-   		<div style="width:25%">
+   		<div style="width:25%;text-align: center">
    			<input type="checkbox" />
    		</div>
    </div>
+   <%} %>
 </div>
 </body>
 <%@ include file="/WEB-INF/view/speechJsCss.jsp"%>

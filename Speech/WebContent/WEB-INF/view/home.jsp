@@ -16,17 +16,21 @@
         <div class="mainTitle2">면접 제작소</div>
     </div>
    <% if (session.getAttribute("userName")==null){ %>
-    <div class="mainSnsBtnGrp">
+    <div class="mainSnsBtnGrp" >
         <div class="mainSnsBtn">
        		<a id="kakao-login-btn"></a>
         </div>
         <div class="mainSnsBtn">
-        	<img src="resources/image/btn_google_signin_light_normal_web.png" style="width:232px;height:49px;cursor:pointer" onclick="snsLogInOut.googleLogin()"/>
+        	<img src="resources/image/btn_google_signin_light_normal_web.png"  style="width:232px;height:49px;cursor:pointer" onclick="snsLogInOut.googleLogin()"/>
         </div>
-        <div class="mainSnsBtn" style="margin-left:40px;">
-        	<div class="fb-login-button" scope="public_profile,email" data-max-rows="1" data-size="large"   data-button-type="continue_with" data-show-faces="true" data-auto-logout-link="true" data-use-continue-as="true" onlogin="snsLogInOut.checkLoginState();"></div>
-		</div>
-		<div id="status"></div>
+         <div class="mainSnsBtn">
+   			 <div class="fb-login-button" style="display:flex; justify-content: center;" scope="public_profile,email" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" onlogin="snsLogInOut.checkLoginState()" data-use-continue-as="true"></div>
+        </div> 
+        <!--  
+       
+		
+		<div id="status"></div> 
+    -->
     </div>
     <%} else { %>
     <div onclick="pageMove.speech('list')"> 면접 메인으로 가기 </div>

@@ -1,6 +1,7 @@
 package poly.service.impl;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -32,6 +33,18 @@ public class SpeechService implements ISpeechService{
 		int result = speechMapper.insertSpeech(sDTO);
 		
 		return result;
+	}
+
+	@Override
+	public List<SpeechDTO> getMySpeechList(SpeechDTO sDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return speechMapper.getMySpeechList(sDTO);
+	}
+
+	@Override
+	public List<SpeechDTO> getSpeechList() throws Exception {
+		// TODO Auto-generated method stub
+		return speechMapper.getSpeechList();
 	}
 	
 	

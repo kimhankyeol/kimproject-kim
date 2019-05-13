@@ -31,6 +31,7 @@ const snsLogInOut = {
 		//페이스북 로그인
 		//FB.getLoginStatus() 의 결과를 받아오는곳
 		statusChangeCallback:function(response){
+	
 			if(response.status === 'connected'){
 				//snsLogInOut.loginAPI();
 			} else {
@@ -45,6 +46,11 @@ const snsLogInOut = {
 				snsLogInOut.statusChangeCallback(response);
 			});
 			FB.api('/me', function(response) { 
+				console.log("---FB.api----")
+				console.log(response);
+				console.log(response.name);
+				console.log(response.id);
+				console.log("-------")
 				name=JSON.stringify(response.name);
 				email=JSON.stringify(response.id);
 				pageMove.loginCbHref(name,email,'facebook');

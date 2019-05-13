@@ -83,13 +83,11 @@ public class StringUtil {
 		
 		return resultStr;
 	}
-	public static String hashTagDel(String[] spcJobTag) {
-		String target="#";
-		for(int i = 0 ; i < spcJobTag.length;i++) {
-			System.out.println(spcJobTag[i].substring(1,spcJobTag[i].length()));
-		}
-		
-		return spcJobTag.toString();
+	public static String[] hashTagDel(String spcJobTag) {
+
+		String subSpcJobTag = spcJobTag.substring(1, spcJobTag.length()-1);
+		String[] newSpcJobTag = subSpcJobTag.split(",");
+		return newSpcJobTag ;
 	}
 	
 

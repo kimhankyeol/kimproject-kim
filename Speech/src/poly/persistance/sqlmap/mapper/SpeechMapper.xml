@@ -3,23 +3,36 @@
 <!-- JAVA와 연결할 Mapper 파일 설정 -->
 <mapper namespace="poly.persistance.mapper.SpeechMapper">
 	<insert id="insertSpeech" parameterType="SpeechDTO">
-	INSERT 
-	INTO 
-	Speech(
-	spcJobTag,
-	spcJobTitle,
-	spcJobQuestion,
-	regdate,
-	regno
-	)
-	VALUES(
-	#{spcJobTag},
-	#{spcJobTitle},
-	#{spcJobQuestion},
-	now(),
-	1
-	
-	) 
+		INSERT 
+		INTO 
+			Speech(
+			spcJobTag,
+			spcJobTitle,
+			spcJobQuestion,
+			regdate,
+			regno
+			)
+		VALUES(
+			#{spcJobTag},
+			#{spcJobTitle},
+			#{spcJobQuestion},
+			now(),
+			#{regno}
+		) 
 	</insert>
+	<select id="getMySpeechList" parameterType="SpeechDTO" resultType="SpeechDTO">
+		SELECT
+		* 
+		FROM
+		SPEECH
+		WHERE 
+		regno=#{regno}
+	</select>
+	<select id="getSpeechList" resultType="SpeechDTO">
+		SELECT
+		*
+		FROM
+		SPEECH
+	</select>
 </mapper>
 

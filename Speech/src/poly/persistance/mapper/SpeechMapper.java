@@ -1,5 +1,7 @@
 package poly.persistance.mapper;
 
+import java.util.List;
+
 import config.Mapper;
 import poly.dto.SpeechDTO;
 
@@ -7,5 +9,9 @@ import poly.dto.SpeechDTO;
 public interface SpeechMapper {
 
 	public int insertSpeech(SpeechDTO sDTO) throws Exception;
+
+	public List<SpeechDTO> getMySpeechList(SpeechDTO sDTO) throws Exception;
+
+	public List<SpeechDTO> getSpeechList() throws Exception;
 	
 }
