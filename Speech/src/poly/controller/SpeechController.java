@@ -1,4 +1,5 @@
 package poly.controller;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -34,11 +35,30 @@ public class SpeechController {
 		return "/speech/mainSelectList";
 	}
 	@RequestMapping(value="/mySpeechQuestion")
-	public String mySpcQuestion() throws Exception{
+	public String mySpcQuestion(HttpSession session,Model model) throws Exception{
+		
+		if(session.getAttribute("userNo")==null) {
+			String msg , url ;
+			msg="로그인 해주세요";
+			url="/home.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "/alert";
+		}
+		
+		String userNo = session.getAttribute("userNo").toString();
+		SpeechDTO sDTO = new SpeechDTO();
+		sDTO.setRegno(userNo);
+		List<SpeechDTO> sList = new ArrayList<>();
+		sList =	speechService.getMySpeechList(sDTO);
+		model.addAttribute("sList",sList);
 		return "/speech/mySpeechQuestion";
 	}
 	@RequestMapping(value="/jobCtgSpeech")
-	public String jobCtgSpeech() throws Exception {
+	public String jobCtgSpeech(Model model) throws Exception {
+		List<SpeechDTO> sList = new ArrayList<>();
+		sList = speechService.getSpeechList();
+		model.addAttribute("sList",sList);
 		return "/speech/jobCtgSpeech";
 	}
 	@RequestMapping(value="/insertView")
@@ -57,7 +77,5 @@ public class SpeechController {
 		}
 		return "/alert";
 	}
-	
-	
 	
 }
