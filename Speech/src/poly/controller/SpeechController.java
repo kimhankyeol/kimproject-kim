@@ -1,10 +1,12 @@
 package poly.controller;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import poly.dto.SpeechDTO;
 import poly.service.ISpeechService;
+import poly.util.CmmUtil;
 
 
 @Controller
@@ -75,5 +78,11 @@ public class SpeechController {
 		}
 		return "/alert";
 	}
-	
+	@RequestMapping(value="/detail")
+	public String getSpeechDetail(HttpServletRequest req,Model model) throws Exception{
+		String webType = CmmUtil.nvl(req.getParameter("webType").toString());
+		log.info(webType);
+		model.addAttribute("webType",webType);
+		return "/speech/speechDetail";
+	}
 }

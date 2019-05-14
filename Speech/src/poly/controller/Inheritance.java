@@ -14,6 +14,7 @@ public static void main(String[] args) {
 	System.out.println(d.matches(regEx));
 	System.out.println(b.matches(regEx));
 	System.out.println(c.matches(regEx));
+	
 }
 }
 */
