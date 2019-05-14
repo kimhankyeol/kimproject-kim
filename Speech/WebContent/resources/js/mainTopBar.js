@@ -57,8 +57,22 @@ const pageMove = {
 		notice:function(urlName){
 			location.href="/notice/"+urlName+".do";
 		},
+		speechDetail:function(urlName,param){
+			location.href="/speech/detail.do?webType="+param;
+		},
 		loginCbHref:function(name,email,snsVal){
 			location.href="loginCallback.do?name="+name+"&email="+email+"&snsVal="+snsVal;
+		},
+		webCtgSpcDetail:function(){
+			if (navigator.platform) {
+				if (init.filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+					console.log("모바일")
+					pageMove.speechDetail("detail","m")
+				} else {
+					console.log("PC");
+					pageMove.speechDetail("detail","p")
+				}
+			}
 		}
 }
 

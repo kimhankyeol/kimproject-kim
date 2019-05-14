@@ -1,7 +1,10 @@
 const init = {
 		kakaoInit:function(){
 			Kakao.init('43345c9ebcab9cfdb9af11b8112451b4');
-		}/*,
+		},
+		filter:"win16|win32|win64|mac|macintel",
+		webType:""
+/*,
 		googleInit:function(){
 			gapi.load('auth2',function(){
 				auth2 = gapi.auth2.init({
@@ -44,3 +47,5 @@ window.fbAsyncInit = function() {
     js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
+  
+  

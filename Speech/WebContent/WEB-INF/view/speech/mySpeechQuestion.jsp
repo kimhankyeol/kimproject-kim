@@ -54,7 +54,7 @@
    			</div>
  			<%} %>
    		</div>
-   		<div class="spcTitle">
+   		<div class="spcTitle" onclick="pageMove.webCtgSpcDetail()" style="cursor: pointer;">
    			<div><%=sList.get(i).getSpcJobTitle() %></div>
    			<div><%=sList.get(i).getRegdate() %></div>
    		</div>
