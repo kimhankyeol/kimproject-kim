@@ -57,20 +57,20 @@ const pageMove = {
 		notice:function(urlName){
 			location.href="/notice/"+urlName+".do";
 		},
-		speechDetail:function(urlName,param){
-			location.href="/speech/detail.do?webType="+param;
+		speechDetail:function(urlName,webtype,spcNo){
+			location.href="/speech/detail.do?webType="+webtype+"&spcNo="+spcNo;
 		},
 		loginCbHref:function(name,email,snsVal){
 			location.href="loginCallback.do?name="+name+"&email="+email+"&snsVal="+snsVal;
 		},
-		webCtgSpcDetail:function(){
+		webCtgSpcDetail:function(spcNo){
 			if (navigator.platform) {
 				if (init.filter.indexOf(navigator.platform.toLowerCase()) < 0) {
 					console.log("모바일")
-					pageMove.speechDetail("detail","m")
+					pageMove.speechDetail("detail","m",tag)
 				} else {
 					console.log("PC");
-					pageMove.speechDetail("detail","p")
+					pageMove.speechDetail("detail","p",tag)
 				}
 			}
 		}

@@ -80,9 +80,14 @@ public class SpeechController {
 	}
 	@RequestMapping(value="/detail")
 	public String getSpeechDetail(HttpServletRequest req,Model model) throws Exception{
-		String webType = CmmUtil.nvl(req.getParameter("webType").toString());
-		log.info(webType);
+		String webType = CmmUtil.nvl(req.getParameter("webType"));
+		String spcNo=CmmUtil.nvl(req.getParameter("spcNo"));
+		SpeechDTO sDTO = new SpeechDTO();
+		sDTO.setSpeechNo(spcNo);
+		sDTO = speechService.getSpeechDetail(sDTO);
+		
 		model.addAttribute("webType",webType);
+		model.addAttribute("sDTO",sDTO);
 		return "/speech/speechDetail";
 	}
 }

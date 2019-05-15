@@ -18,13 +18,17 @@
        		<div>Dr.Speech의고객</div>
        		<div><b><%=session.getAttribute("userName") %></b>님</div>
    		</div>
+   		<div style="font-size=20px;">
+   		면접 질문
+   		</div>
+   		
    </div>
 <%if (webType.equals("m")){ %>
 		<input type="file" accept="audio/*" capture="microphone" id="recorder">
         <audio id="player" controls></audio>
       	<script src=""></script>
 <%}else{ %>
-<%} %> --%>
+<%} %> 
 <%@ include file="/WEB-INF/view/speechJsCss.jsp"%>
 </body>
 </html>

@@ -46,6 +46,12 @@ public class SpeechService implements ISpeechService{
 		// TODO Auto-generated method stub
 		return speechMapper.getSpeechList();
 	}
+
+	@Override
+	public SpeechDTO getSpeechDetail(SpeechDTO sDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return speechMapper.getSpeechDetail(sDTO);
+	}
 	
 	
 	

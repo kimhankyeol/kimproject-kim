@@ -14,5 +14,7 @@ public interface ISpeechService {
 
 	public List<SpeechDTO> getSpeechList() throws Exception;
 
+	public SpeechDTO getSpeechDetail(SpeechDTO sDTO) throws Exception;
+
 
 }

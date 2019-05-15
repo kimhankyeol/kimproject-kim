@@ -34,5 +34,13 @@
 		FROM
 		SPEECH
 	</select>
+	<select id="getSpeechDetail" parameterType="SpeechDTO" resultType="SpeechDTO">
+		SELECT 
+		*
+		FROM
+		SPEECH
+		WHERE
+		speechNo = #{speechNo}
+	</select>
 </mapper>
 
