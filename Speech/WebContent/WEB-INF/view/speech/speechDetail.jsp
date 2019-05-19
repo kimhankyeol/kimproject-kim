@@ -1,7 +1,11 @@
+<%@page import="java.util.Date"%>
+<%@page import="poly.util.StringUtil"%>
+<%@page import="poly.dto.SpeechDTO"%>
 <%@page import="poly.util.CmmUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%String webType= CmmUtil.nvl((String)request.getAttribute("webType")) ; %>
+<%String webType= CmmUtil.nvl((String)request.getAttribute("webType")) ; 
+  SpeechDTO sDTO = (SpeechDTO) request.getAttribute("sDTO");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,14 +25,32 @@
    		<div style="font-size=20px;">
    		면접 질문
    		</div>
-   		
-   </div>
-<%if (webType.equals("m")){ %>
-		<input type="file" accept="audio/*" capture="microphone" id="recorder">
+   		<%if (webType.equals("m")){ %>
+		<input type="file" accept="audio/*" capture="microphone" id="recorder" />
         <audio id="player" controls></audio>
       	<script src=""></script>
-<%}else{ %>
-<%} %> 
+
+     
+		<%}else{ %>
+
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.js"></script>
+		    <script src="/resources/js/sketch.js"></script>
+		    <div  style="display: flex">
+		    	<div id="webRecord" onclick="webRecord()" style="">녹음</div>
+			    <div id="webStop" onclick="webStop()">정지</div>
+			    <div id="webPause" onclick="webPause()">일시정지</div>
+			   	<div id="webPlay" onclick="webPlay()" >재생</div>
+			  	<div id="webSvFile"onclick="webSvFile('<%=session.getAttribute("userName")%>-<%=sDTO.getSpcJobTitle()%>-<%=StringUtil.newDate(new Date())%>')">save</div>
+		  	</div>
+		  	<div id="webRecorder" style="padding-left:20px">
+		  	
+		  	</div>
+		  	<script src="/resources/js/record.js"></script>
+		<%} %> 
+   </div>
+
 <%@ include file="/WEB-INF/view/speechJsCss.jsp"%>
 </body>
+
 </html>

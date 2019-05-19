@@ -90,4 +90,9 @@ public class SpeechController {
 		model.addAttribute("sDTO",sDTO);
 		return "/speech/speechDetail";
 	}
+	@RequestMapping(value="/ll")
+	public String getss(HttpServletRequest req) throws Exception{
+		log.info(req.getAttribute("soundFile"));
+		return null;
+	}
 }
