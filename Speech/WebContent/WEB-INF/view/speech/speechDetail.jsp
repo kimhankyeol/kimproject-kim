@@ -36,15 +36,16 @@
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.js"></script>
 		    <script src="/resources/js/sketch.js"></script>
-		    <div  style="display: flex">
-		    	<div id="webRecord" onclick="webRecord()" style="">녹음</div>
-			    <div id="webStop" onclick="webStop()">정지</div>
-			    <div id="webPause" onclick="webPause()">일시정지</div>
-			   	<div id="webPlay" onclick="webPlay()" >재생</div>
-			  	<div id="webSvFile"onclick="webSvFile('<%=session.getAttribute("userName")%>-<%=sDTO.getSpcJobTitle()%>-<%=StringUtil.newDate(new Date())%>')">save</div>
+		  	<div id="webRecorder" style="display:flex;justify-content:center">
 		  	</div>
-		  	<div id="webRecorder" style="padding-left:20px">
-		  	
+		  	 <div style="display: flex">
+		    	<div id="webRecord" onclick="webRecord()" style="">녹음</div>
+			    <div id="webStop" onclick="webStop()" style="display:none">녹음 정지</div>
+			    <div id="webSoundFileStop" onclick="webSoundFileStop()" style="display:none">정지</div>
+			    <div id="webPlay" onclick="webPlay()" style="display:none" >재생</div>
+			    <div id="webPause" onclick="webPause()" style="display:none" >일시정지</div>
+			   
+			  	<div id="webSvFile" style="display:none" onclick="webSvFile('<%=session.getAttribute("userName")%>-<%=sDTO.getSpcJobTitle()%>-<%=StringUtil.newDate(new Date())%>')">save</div>
 		  	</div>
 		  	<script src="/resources/js/record.js"></script>
 		<%} %> 
