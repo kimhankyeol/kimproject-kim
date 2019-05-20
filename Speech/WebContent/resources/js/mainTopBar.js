@@ -67,10 +67,10 @@ const pageMove = {
 			if (navigator.platform) {
 				if (init.filter.indexOf(navigator.platform.toLowerCase()) < 0) {
 					console.log("모바일")
-					pageMove.speechDetail("detail","m",tag)
+					pageMove.speechDetail("detail","m",spcNo)
 				} else {
 					console.log("PC");
-					pageMove.speechDetail("detail","p",tag)
+					pageMove.speechDetail("detail","p",spcNo)
 				}
 			}
 		}

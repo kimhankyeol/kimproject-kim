@@ -1,8 +1,10 @@
 package poly.util;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +90,11 @@ public class StringUtil {
 		String subSpcJobTag = spcJobTag.substring(1, spcJobTag.length()-1);
 		String[] newSpcJobTag = subSpcJobTag.split(",");
 		return newSpcJobTag ;
+	}
+	public static String newDate(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy년 MM월dd일");
+		String time = format.format(date);
+		return time;
 	}
 	
 
