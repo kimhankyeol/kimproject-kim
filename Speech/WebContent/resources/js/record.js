@@ -12,9 +12,13 @@ const mobileRecord={
 } 
 //pc 녹음
 const webRecorderUpload = {
+		fileContent:document.getElementById('fileContent'),
 		wRecorderFileContent:document.getElementById('webRecorderFile').addEventListener('change',function(e){
 			let file = e.target.files[0];
 			console.table(file)
+			fileContent.innerHTML="<div>파일명 : "+file.name+"</div>"
+								+"<div>용량 :"+file.size/1024/1024+"MB </div>"
+								+"<div>시간 :"+file.size/1024/172+"초</div>"
 		})
 }
 
@@ -31,7 +35,8 @@ const webRecBlockNone = {
 		webPause:document.getElementById('webPause'),
 		webPlay:document.getElementById('webPlay'),
 		webSvFile:document.getElementById('webSvFile'),
-		webSoundFileStop:document.getElementById('webSoundFileStop')
+		webSoundFileStop:document.getElementById('webSoundFileStop'),
+		alertText:document.getElementById('alertText')
 }
 
 
@@ -42,13 +47,16 @@ function webRecord(){
    webRecBlockNone.webPlay.style.display = 'none';
    webRecBlockNone.webSvFile.style.display = 'none';
    webRecBlockNone.webSoundFileStop.style.display = "none";
+   webRecBlockNone.alertText.innerHTML=""
    var canvas= createCanvas(screen.width/2,screen.height/4 );
    canvas.parent('webRecorder');
    recorder.record(soundFile);
- 
+
 }
 
-function webStop() {
+//webStop
+webRecBlockNone.webStop.addEventListener('click',function(){
+	
 	webRecBlockNone.webRecord.style.display = 'block';
 	webRecBlockNone.webStop.style.display = 'none';
 	webRecBlockNone.webPause.style.display = 'none';
@@ -58,7 +66,15 @@ function webStop() {
 	createCanvas(0,0)
     audioCtx.resume();
     recorder.stop();
-}
+    console.table(soundFile.buffer.duration)
+    if(soundFile.buffer.duration>60){
+    	
+    	webRecBlockNone.alertText.innerHTML = "<div style='text-align:center;color:red'>녹음 시간은 총 "+soundFile.buffer.duration+"초 입니다.</div>";
+    }else{
+    	webRecBlockNone.alertText.innerHTML = "<div style='text-align:center;color:#00aeef'>녹음 시간은 총 "+soundFile.buffer.duration+"초 입니다.</div>";
+    }
+    
+})
 
 function webPlay() {
 	webRecBlockNone.webRecord.style.display = 'none';
@@ -67,7 +83,7 @@ function webPlay() {
 	webRecBlockNone.webPlay.style.display = 'none';
 	webRecBlockNone.webSvFile.style.display = 'block';
 	webRecBlockNone.webSoundFileStop.style.display = "block";
-	console.table(soundFile.buffer);
+	//console.table(soundFile.buffer);
 	soundFile.stop();
     soundFile.play();
     

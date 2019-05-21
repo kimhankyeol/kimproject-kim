@@ -28,7 +28,9 @@
    		면접 질문
    		</div>
    		<div>
-   		
+   			<%for(int i = 0; i<sDTO.getSpcJobTag().length(); i++){
+   			
+   			}%>
    		</div>
    		<%if (webType.equals("m")){ %>
 		<input type="file" accept="audio/*" capture="microphone" id="recorder" />
@@ -46,10 +48,10 @@
 		  	</div>
 		  	<div id="webRecorder" style="display:flex;justify-content:center">
 		  	</div>
-		  	
+		  	<div id="alertText"></div>
    			<div style="display: flex;justify-content:center">
    				<img id="webRecord" onclick="webRecord()" src="/resources/image/blueRec.svg" style="height:120px;cursor:pointer">
-   				<img id="webStop" onclick="webStop()" src="/resources/image/redRec.svg" style="display:none;height:120px;cursor:pointer"/>
+   				<img id="webStop"  src="/resources/image/redRec.svg" style="display:none;height:120px;cursor:pointer"/>
 			    <img id="webPlay" onclick="webPlay()" src="/resources/image/play.png" style="display:none;height:100px;padding-top: 10px;cursor:pointer"/>
 			    <img id="webSvFile" onclick="webSvFile('<%=session.getAttribute("userName")%>-<%=sDTO.getSpcJobTitle()%>-<%=StringUtil.newDate(new Date())%>')" style="display:none;height:120px;cursor:pointer" src="/resources/image/download.png"/>
 			    <img id="webSoundFileStop" src="/resources/image/recStop.svg"  onclick="webSoundFileStop()" style="display:none;height:120px;cursor:pointer">
@@ -61,7 +63,7 @@
 		  			<img src="/resources/image/filePlus.svg" style="display:table; padding-top:30px; padding-bottom:12px;margin:0px auto ;" />
 		   			<p style="text-align:center;color:#6f6f6f">오디오 파일은 1개만 첨부 가능합니다.</p>
 		   			<p style="color:#3990ff">녹음 된 파일은 다운로드 폴더에 저장되어있습니다.</p>
-		   			<p id="fileContent"></p>
+		   			<div id="fileContent"></div>
 		   		</label>
 		  	</div>
 		  	<script src="/resources/js/record.js"></script>

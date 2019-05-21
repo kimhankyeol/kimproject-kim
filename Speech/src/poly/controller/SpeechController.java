@@ -21,7 +21,7 @@ import poly.util.CmmUtil;
 
 
 @Controller
-@RequestMapping("/speech")
+@RequestMapping("/speech") 
 public class SpeechController {
 	private Logger log = Logger.getLogger(this.getClass());
 	

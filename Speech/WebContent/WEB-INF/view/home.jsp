@@ -39,7 +39,4 @@
 </body>
 <%@ include file="speechJsCss.jsp"%>
 
-<script>
-
-</script>
 </html>

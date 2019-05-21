@@ -39,6 +39,7 @@ public class HomeController {
 	public String home() throws Exception{
 		return "/home";
 	}
+
 	
 	@RequestMapping(value="/loginCallback")
 	public String loginCallback(@RequestParam Map<String,String> map,HttpSession session,Model model) throws Exception{
