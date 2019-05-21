@@ -27,6 +27,9 @@
    		<div style="font-size:20px;">
    		면접 질문
    		</div>
+   		<div>
+   		
+   		</div>
    		<%if (webType.equals("m")){ %>
 		<input type="file" accept="audio/*" capture="microphone" id="recorder" />
         <audio id="player" controls></audio>
@@ -44,18 +47,22 @@
 		  	<div id="webRecorder" style="display:flex;justify-content:center">
 		  	</div>
 		  	
-		  	<div id="alertText" style="padding-top:17px;padding-left:57px;padding-right:57px;color:#00aeef;text-align:center">면접 질문에 답변할 준비가 되어있으면 녹음 버튼을 누르시고 시작해주세요.(최대 1분)</div>
    			<div style="display: flex;justify-content:center">
    				<img id="webRecord" onclick="webRecord()" src="/resources/image/blueRec.svg" style="height:120px;cursor:pointer">
    				<img id="webStop" onclick="webStop()" src="/resources/image/redRec.svg" style="display:none;height:120px;cursor:pointer"/>
-			    <img id="webPlay" onclick="webPlay()" src="/resources/image/play.png" style="display:none;height:50px;cursor:pointer"/>
-			    <img id="webSvFile" onclick="webSvFile('<%=session.getAttribute("userName")%>-<%=sDTO.getSpcJobTitle()%>-<%=StringUtil.newDate(new Date())%>')" style="display:none;height:50px;cursor:pointer" src="/resources/image/download.png"/>
-			    <div id="webSoundFileStop" onclick="webSoundFileStop()" style="display:none">정지</div>
-			    <div id="webPlay" onclick="webPlay()" style="display:none" >재생</div>
-			    <div id="webPause" onclick="webPause()" style="display:none" >일시정지</div>		   
+			    <img id="webPlay" onclick="webPlay()" src="/resources/image/play.png" style="display:none;height:100px;padding-top: 10px;cursor:pointer"/>
+			    <img id="webSvFile" onclick="webSvFile('<%=session.getAttribute("userName")%>-<%=sDTO.getSpcJobTitle()%>-<%=StringUtil.newDate(new Date())%>')" style="display:none;height:120px;cursor:pointer" src="/resources/image/download.png"/>
+			    <img id="webSoundFileStop" src="/resources/image/recStop.svg"  onclick="webSoundFileStop()" style="display:none;height:120px;cursor:pointer">
+			    <img id="webPause" onclick="webPause()" src="/resources/image/recPause.svg" style="display:none;height:100px;padding-top: 10px;cursor:pointer" >	   
    			</div>
-  			<div style="display: flex;justify-content:center"> 
-			   
+  			<div style="display: flex;justify-content:center;border:1px solid #dfdfdf;border-radius:10px;padding-bottom:24px;"> 
+			   <input type="file" accept="audio/*" id="webRecorderFile" style="display:none"/>
+		   		<label for="webRecorderFile"  style="cursor:point" onchange="webRecorderUpload.wRecorderFileContent()">
+		  			<img src="/resources/image/filePlus.svg" style="display:table; padding-top:30px; padding-bottom:12px;margin:0px auto ;" />
+		   			<p style="text-align:center;color:#6f6f6f">오디오 파일은 1개만 첨부 가능합니다.</p>
+		   			<p style="color:#3990ff">녹음 된 파일은 다운로드 폴더에 저장되어있습니다.</p>
+		   			<p id="fileContent"></p>
+		   		</label>
 		  	</div>
 		  	<script src="/resources/js/record.js"></script>
 		<%} %> 

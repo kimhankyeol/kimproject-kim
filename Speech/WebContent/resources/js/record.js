@@ -11,6 +11,15 @@ const mobileRecord={
 	}
 } 
 //pc 녹음
+const webRecorderUpload = {
+		wRecorderFileContent:document.getElementById('webRecorderFile').addEventListener('change',function(e){
+			let file = e.target.files[0];
+			console.table(file)
+		})
+}
+
+
+
 //webRecorder
 var mic,recorder,soundFile,amp;
 var volhistory = [];
@@ -22,35 +31,31 @@ const webRecBlockNone = {
 		webPause:document.getElementById('webPause'),
 		webPlay:document.getElementById('webPlay'),
 		webSvFile:document.getElementById('webSvFile'),
-		webSoundFileStop:document.getElementById('webSoundFileStop'),
-		alertText:document.getElementById('alertText')
+		webSoundFileStop:document.getElementById('webSoundFileStop')
 }
-function webRecord() {
+
+
+function webRecord(){
    webRecBlockNone.webRecord.style.display = 'none';
    webRecBlockNone.webStop.style.display = 'block';
    webRecBlockNone.webPause.style.display = 'none';
    webRecBlockNone.webPlay.style.display = 'none';
    webRecBlockNone.webSvFile.style.display = 'none';
    webRecBlockNone.webSoundFileStop.style.display = "none";
-  
    var canvas= createCanvas(screen.width/2,screen.height/4 );
    canvas.parent('webRecorder');
    recorder.record(soundFile);
-   var recInterval = setInterval(()=>{
-		if(soundFile.input.context.currentTime>=5){
-			  clearInterval(recInterval);
-			  webRecBlockNone.alertText.innerHTML="60초가 초과하였습니다."
-			  webStop();
-		}
-	}, 1000)
+ 
 }
+
 function webStop() {
-	webRecBlockNone.webRecord.style.display = 'none';
+	webRecBlockNone.webRecord.style.display = 'block';
 	webRecBlockNone.webStop.style.display = 'none';
 	webRecBlockNone.webPause.style.display = 'none';
 	webRecBlockNone.webPlay.style.display = 'block';
 	webRecBlockNone.webSvFile.style.display = 'block';
 	webRecBlockNone.webSoundFileStop.style.display = "none";
+	createCanvas(0,0)
     audioCtx.resume();
     recorder.stop();
 }
@@ -94,7 +99,6 @@ function webPause(){
 }
 function webSvFile(fileName) {
     saveSound(soundFile, fileName);
-
 }
 
 function setup(){
@@ -127,6 +131,8 @@ function draw(){
 	//   console.log(micLevel)
 	   //ellipse(100,100,micLevel*1000,micLevel*1000);
 }
+
+
 
 
 
