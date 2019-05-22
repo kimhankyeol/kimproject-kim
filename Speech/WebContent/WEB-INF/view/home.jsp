@@ -26,7 +26,6 @@
          <div class="mainSnsBtn">
    			 <div class="fb-login-button" style="display:flex; justify-content: center;" scope="public_profile,email" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" onlogin="snsLogInOut.checkLoginState()" data-use-continue-as="true"></div>
         </div> 
-   		<div onclick="sibal()">가나다라마바사</div>
     </div>
     <%} else { %>
     <div onclick="pageMove.speech('list')"> 면접 메인으로 가기 </div>
@@ -36,32 +35,31 @@
 <%@ include file="speechJsCss.jsp"%>
 
 <script>
-function sibal(){
-
+/* function sibal(){
+	var apiKey="AIzaSyDdFoTsttD8ege0wNTnh70LPnRLmeUhljI"
 	$.ajax({
 		url:"https://texttospeech.googleapis.com/v1/text:synthesize?key="+apiKey,
 		method:'post',
 		dataType:'application/json',
 		data:{
-			  ["audioConfig": {
-				    "audioEncoding": "LINEAR16",
-				    "pitch": 0,
-				    "speakingRate": 1
-				  },
-				  "input": {
-				    "text": "Google Cloud Text-to-Speech enables developers to synthesize natural-sounding speech with 100+ voices, available in multiple languages and variants. It applies DeepMind’s groundbreaking research in WaveNet and Google’s powerful neural networks to deliver the highest fidelity possible. As an easy-to-use API, you can create lifelike interactions with your users, across many applications and devices."
-				  },
-				  "voice": {
-				    "languageCode": "en-US",
-				    "name": "en-US-Wavenet-D"
-				  }
-				  ]
-				},
+				"audioConfig": {
+					  "audioEncoding": "LINEAR16",
+					  "pitch": 0,
+					  "speakingRate": 1
+				 },
+				"input": {
+					   "text": "Google Cloud Text-to-Speech enables developers to synthesize natural-sounding speech with 100+ voices, available in multiple languages and variants. It applies DeepMind’s groundbreaking research in WaveNet and Google’s powerful neural networks to deliver the highest fidelity possible. As an easy-to-use API, you can create lifelike interactions with your users, across many applications and devices."
+				 },
+			     "voice": {
+					   "languageCode": "en-US",
+					   "name": "en-US-Wavenet-D"
+				}
+			},
 		success:function(data){
 			console.table(data);
 		}
 	})
-}
+} */
 
 
 </script>

@@ -421,3 +421,20 @@ width:50%;
     padding: 15px 0px;
     margin-bottom: 15px;
 }
+
+/* .padLR .spcDetailTagScroll{
+	width: 25%;
+	overflow-x: scroll; 
+	display: -webkit-box;
+}
+.padLR .spcDetailTagScroll .spcDetailTagTitle{
+	border-radius: 20px; 
+	color: #00aeef; 
+	border: 1px solid #00aeef; 
+	padding: 15px 15px; 
+	margin-right: 10px; 
+	font-size: 0.874em; 
+	text-align: left; 
+	line-height: 1.248em; 
+	letter-spacing: -0.044em;
+} */

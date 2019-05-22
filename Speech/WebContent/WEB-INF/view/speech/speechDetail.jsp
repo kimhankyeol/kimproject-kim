@@ -27,12 +27,22 @@
    		<div style="font-size:20px;">
    		면접 질문
    		</div>
-   		<div>
-   			<%for(int i = 0; i<sDTO.getSpcJobTag().length(); i++){
-   			
-   			}%>
-   		</div>
-   		<%if (webType.equals("m")){ %>
+		<div style="display:flex">
+			<div style="width: 25%; overflow-x: scroll; display: -webkit-box;">
+				<%
+					for (int i = 0; i < StringUtil.hashTagDel(sDTO.getSpcJobTag()).length; i++) {
+				%>
+				<div style="border-radius: 20px; color: #00aeef; border: 1px solid #00aeef; padding: 15px 15px; margin-right: 10px; font-size: 0.874em; text-align: left; line-height: 1.248em; letter-spacing: -0.044em;">
+				<%=StringUtil.hashTagDel(sDTO.getSpcJobTag())[i]%>
+				</div>
+				<%} %>
+			</div>
+			<marquee style="width:60%; font-size:20px">
+				<%=sDTO.getSpcJobTitle() %>  - 질문 : <%=sDTO.getSpcJobQuestion() %>
+			</marquee>
+			<div style="width:30%;text-align:center" ><img src="/resources/image/play.png" onclick="textToSpeech.settingsPush('<%=sDTO.getSpcJobQuestion()%>')" style="height: 67.56px"/></div>
+		</div>
+		<%if (webType.equals("m")){ %>
 		<input type="file" accept="audio/*" capture="microphone" id="recorder" />
         <audio id="player" controls></audio>
       	<script src=""></script>
