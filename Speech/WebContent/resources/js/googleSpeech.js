@@ -1,5 +1,3 @@
-
-const apiKey="apikey는 json으로 관리"
 const textToSpeech ={
 		settingsPush:(textQuestion)=>{
 			textToSpeech.settings.data="{'audioConfig': {'audioEncoding': 'LINEAR16','pitch': 0,'speakingRate': 1},'input': {'text': '"+textQuestion+"'},'voice': {'languageCode': 'ko-KR','name': 'ko-KR-Wavenet-B'}}"
@@ -15,7 +13,7 @@ const textToSpeech ={
 			"url":"https://texttospeech.googleapis.com/v1/text:synthesize",
 			"method":"POST",
 			"headers":{
-				"x-goog-api-key":apiKey,
+				"x-goog-api-key":jsonData.read.responseJSON.googleApiKey,
 				"content-type":"application/json",
 				"cache-control":"no-cache"
 			},
