@@ -68,20 +68,38 @@
 			    <img id="webPause" onclick="webPause()" src="/resources/image/recPause.svg" style="display:none;height:100px;padding-top: 10px;cursor:pointer" >	   
    			</div>
   			<div style="display: flex;justify-content:center;border:1px solid #dfdfdf;border-radius:10px;padding-bottom:24px;"> 
-			   
-			   <input type="file" accept="audio/*" id="webRecorderFile" style="display:none"/>
+			   <form id="uploadForm">
+			   <input type="file" accept="audio/*" id="webRecorderFile" name="webRecorderFile" style="display:none"/>
 		   		<label for="webRecorderFile"  style="cursor:point" onchange="webRecorderUpload.wRecorderFileContent()">
 		  			<img src="/resources/image/filePlus.svg" style="display:table; padding-top:30px; padding-bottom:12px;margin:0px auto ;" />
 		   			<p style="text-align:center;color:#6f6f6f">오디오 파일은 1개만 첨부 가능합니다.</p>
 		   			<p style="color:#3990ff">녹음 된 파일은 다운로드 폴더에 저장되어있습니다.</p>
 		   			<div id="fileContent"></div>
 		   		</label>
+		   		<input type="hidden" name="spcNo" value="<%=sDTO.getSpeechNo()%>"/>
+		   		</form>
 		  	</div>
+		  	<button id="aj"> 등록하기 </button>
 		  	<script src="/resources/js/record.js"></script>
 		<%} %> 
    </div>
 
 <%@ include file="/WEB-INF/view/speechJsCss.jsp"%>
+	<script>
+		  $(function(){
+			  $('#aj').click(function(){
+			  		$("#uploadForm").ajaxForm({
+			  			url:"/speech/insertRecord.do",
+			  			enctype:"multipart/form-data",
+			  			method:"post",
+			  			success:function(data){
+			  				console.log(data)
+			  			}
+			  		}).submit();
+			  	})
+		  })
+		  	
+		  	</script>
 </body>
 
 </html>

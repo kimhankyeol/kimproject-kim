@@ -1,15 +1,11 @@
 package poly.dto;
 
-public class SpeechDTO {
+public class SpeechDTO extends AuthorDTO{
 
 	private String speechNo;
 	private String spcJobTag;
 	private String spcJobTitle;
 	private String spcJobQuestion;
-	private String regdate;
-	private String regno;
-	private String upddate;
-	private String updno;
 	public String getSpeechNo() {
 		return speechNo;
 	}
@@ -34,30 +30,5 @@ public class SpeechDTO {
 	public void setSpcJobQuestion(String spcJobQuestion) {
 		this.spcJobQuestion = spcJobQuestion;
 	}
-	public String getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
-	}
-	public String getRegno() {
-		return regno;
-	}
-	public void setRegno(String regno) {
-		this.regno = regno;
-	}
-	public String getUpddate() {
-		return upddate;
-	}
-	public void setUpddate(String upddate) {
-		this.upddate = upddate;
-	}
-	public String getUpdno() {
-		return updno;
-	}
-	public void setUpdno(String updno) {
-		this.updno = updno;
-	}
-	
 	
 }

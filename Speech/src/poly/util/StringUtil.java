@@ -96,5 +96,5 @@ public class StringUtil {
 		String time = format.format(date);
 		return time;
 	}
-
+	
 }

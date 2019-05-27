@@ -2,7 +2,6 @@ package poly.dto;
 
 
 public class UserDTO {
-
 	
 	 private String userNo;
 	 private String userName;
@@ -39,9 +38,5 @@ public class UserDTO {
 	public void setSnsVal(String snsVal) {
 		this.snsVal = snsVal;
 	}
-	
-	 
-	 
-	 
 	
 }

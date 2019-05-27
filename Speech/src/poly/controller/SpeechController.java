@@ -1,6 +1,8 @@
 package poly.controller;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,11 +15,18 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import poly.dto.AuthorDTO;
+import poly.dto.FileDTO;
 import poly.dto.SpeechDTO;
 import poly.service.ISpeechService;
 import poly.util.CmmUtil;
+import poly.util.FileUtil;
 
 
 @Controller
@@ -89,5 +98,31 @@ public class SpeechController {
 		model.addAttribute("webType",webType);
 		model.addAttribute("sDTO",sDTO);
 		return "/speech/speechDetail";
+	}
+	@RequestMapping(value="/insertRecord",method=RequestMethod.POST)
+	public @ResponseBody String insertRecord(HttpServletRequest req,HttpSession session) throws Exception{
+		String path = req.getSession().getServletContext().getRealPath("/upload/");
+		String spcNo = req.getParameter("spcNo");
+		log.info(path);
+		MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest)req;
+		log.info(mhsr.getFile("webRecorderFile").getOriginalFilename());
+		log.info(mhsr.getFile("webRecorderFile").getSize()/1024/172+"초");
+		log.info(session.getAttribute("userNo"));
+		String[] fileArray = FileUtil.fileNewString("webRecorderFile",mhsr,path);
+		/*File newFile =new File(fileArray[1]);
+		if(!newFile.isDirectory()) {
+			newFile.mkdirs();
+		}*/
+		FileDTO fDTO = new FileDTO();
+		SpeechDTO sDTO = new SpeechDTO();
+		sDTO.setSpeechNo(spcNo);
+		fDTO.setsDTO(sDTO);
+		fDTO.setFileOriginName(mhsr.getFile("webRecorderFile").getOriginalFilename());
+		fDTO.setFileNewName(fileArray[0]);
+		fDTO.setFilePath(path);
+		fDTO.setRegno();
+		
+		
+		return null;
 	}
 }
