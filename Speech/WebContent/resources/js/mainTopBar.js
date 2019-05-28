@@ -60,6 +60,9 @@ const pageMove = {
 		speechDetail:function(urlName,webtype,spcNo){
 			location.href="/speech/detail.do?webType="+webtype+"&spcNo="+spcNo;
 		},
+		answerList:function(spcNo){
+			location.href="/speech/answerList.do?&spcNo="+spcNo;
+		},
 		loginCbHref:function(name,email,snsVal){
 			location.href="loginCallback.do?name="+name+"&email="+email+"&snsVal="+snsVal;
 		},

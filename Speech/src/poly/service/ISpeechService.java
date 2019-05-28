@@ -19,5 +19,7 @@ public interface ISpeechService {
 
 	public int insertFileSpeech(HashMap<String, Object> hMap) throws Exception;
 
+	public List<SpeechDTO> getAnswerList(SpeechDTO sDTO) throws Exception;
+
 
 }

@@ -59,5 +59,35 @@
 			#{sDTO.regno}
 		)
 	</insert>
+	<select id="getAnswerList" parameterType="SpeechDTO"  resultMap="speech">
+	SELECT 
+	S.spcJobTitle AS spcJobTitle,
+	S.spcJobQuestion AS spcJobQuestion,
+	U.userNo AS userNo,
+	U.userName AS userName,
+	F.fileNewName AS fileNewName
+	FROM
+	SPEECH S
+	INNER JOIN FILE F
+	ON F.speechNo = S.speechNo AND F.speechNo = #{speechNo}
+	INNER JOIN USER U
+	ON F.regno = U.userNo 
+	</select>
+	
+	<!-- resultMap SpeechDTO FileDTO UserDTO -->
+	<resultMap type="FileDTO" id="FileDTO">
+		<result column="fileNewName" property="fileNewName"/>
+	</resultMap>
+	<resultMap type="UserDTO" id="UserDTO">
+		<result column="userNo" property="userNo"/>
+		<result column="userName" property="userName"/>
+	</resultMap>
+	<resultMap type="SpeechDTO" id="speech" >
+		<result column="speechNo" property="speechNo"/>
+		<result column="spcJobTitle" property="spcJobTitle"/>
+		<result column="spcJobQuestion" property="spcJobQuestion"/>
+		<collection property="file" resultMap="FileDTO"></collection>
+		<collection property="user" resultMap="UserDTO"></collection>
+	</resultMap>
 </mapper>
 

@@ -18,5 +18,7 @@ public interface SpeechMapper {
 	public SpeechDTO getSpeechDetail(SpeechDTO sDTO) throws Exception;
 
 	public int insertFileSpeech(HashMap<String, Object> hMap) throws Exception;
+
+	public List<SpeechDTO> getAnswerList(SpeechDTO sDTO) throws Exception;
 	
 }

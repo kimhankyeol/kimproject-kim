@@ -104,11 +104,8 @@ public class SpeechController {
 	public @ResponseBody String insertRecord(HttpServletRequest req,HttpSession session,Model model) throws Exception{
 		String spcNo = req.getParameter("spcNo");
 		String path = req.getSession().getServletContext().getRealPath("/upload/spcNo"+spcNo+"/userNo"+session.getAttribute("userNo").toString()+"/");
-		log.info(path);
-		
 		MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest)req;
 		String[] fileArray = FileUtil.fileNewString("webRecorderFile",mhsr,path);
-		
 		SpeechDTO sDTO = new SpeechDTO();
 		FileDTO fDTO = new FileDTO();
 		HashMap<String,Object> hMap = new HashMap<>();
@@ -119,21 +116,20 @@ public class SpeechController {
 		fDTO.setFilePath(path);
 		hMap.put("sDTO", sDTO);
 		hMap.put("fDTO", fDTO);
-		File newFile =new File(fileArray[1]);
-		if(!newFile.isDirectory()) {
-			newFile.mkdirs();
-		}
-		mhsr.getFile("webRecorderFile").transferTo(newFile);
 		int result = speechService.insertFileSpeech(hMap);
 		String msg,url;
 		if(result==1) {
+			File newFile =new File(fileArray[1]);
+			if(!newFile.isDirectory()) {
+				newFile.mkdirs();
+			}
+			mhsr.getFile("webRecorderFile").transferTo(newFile);
 			msg="등록하였습니다.";
 			url="/speech/mySpeechQuestion.do";
 		}else{
 			msg="실패하였습니다.";
 			url="/speech/mySpeechQuestion.do";
 		}
-			
 		
 		hMap=null;
 		sDTO=null;
@@ -141,4 +137,19 @@ public class SpeechController {
 		
 		return "/alert";
 	}
+	@RequestMapping("/answerList")
+	public String getAnswerList(HttpServletRequest req,Model model) throws Exception{
+		String spcNo=req.getParameter("spcNo");
+		List<SpeechDTO> sList=new ArrayList<>(); 
+		SpeechDTO sDTO = new SpeechDTO();
+		sDTO.setSpeechNo(spcNo);
+		sList = speechService.getAnswerList(sDTO);
+		log.info(sList.size());
+		for(int i=0 ;i<sList.size();i++) {
+			log.info(sList.get(i).getSpcJobQuestion());
+		}
+		model.addAttribute("sList",sList);
+		return "/speech/speechAnswerList";
+	}
+	
 }

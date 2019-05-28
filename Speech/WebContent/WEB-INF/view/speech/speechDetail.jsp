@@ -80,6 +80,7 @@
 		   		</form>
 		  	</div>
 		  	<button id="aj"> 등록하기 </button>
+		  	<div onclick="pageMove.answerList('<%=sDTO.getSpeechNo()%>')">질문 답변 목록 보기</div>
 		  	<script src="/resources/js/record.js"></script>
 		<%} %> 
    </div>
