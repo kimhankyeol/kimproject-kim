@@ -1,5 +1,6 @@
 package poly.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ public interface ISpeechService {
 	public List<SpeechDTO> getSpeechList() throws Exception;
 
 	public SpeechDTO getSpeechDetail(SpeechDTO sDTO) throws Exception;
+
+	public int insertFileSpeech(HashMap<String, Object> hMap) throws Exception;
 
 
 }

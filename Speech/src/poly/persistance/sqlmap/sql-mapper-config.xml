@@ -7,5 +7,6 @@
 		<typeAlias type="poly.dto.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="poly.dto.UserDTO" alias="UserDTO"/>
 		<typeAlias type="poly.dto.SpeechDTO" alias="SpeechDTO"/>
+		<typeAlias type="poly.dto.FileDTO" alias="FileDTO"/>
     </typeAliases>
 </configuration>

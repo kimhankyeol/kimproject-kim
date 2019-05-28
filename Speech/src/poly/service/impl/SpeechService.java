@@ -1,6 +1,7 @@
 package poly.service.impl;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +52,12 @@ public class SpeechService implements ISpeechService{
 	public SpeechDTO getSpeechDetail(SpeechDTO sDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return speechMapper.getSpeechDetail(sDTO);
+	}
+
+	@Override
+	public int insertFileSpeech(HashMap<String, Object> hMap) throws Exception {
+		// TODO Auto-generated method stub
+		return speechMapper.insertFileSpeech(hMap);
 	}
 	
 	

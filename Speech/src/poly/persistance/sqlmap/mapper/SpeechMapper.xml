@@ -42,5 +42,22 @@
 		WHERE
 		speechNo = #{speechNo}
 	</select>
+	<insert id="insertFileSpeech" parameterType="map">
+		INSERT INTO file(
+			fileOriginName,
+			fileNewName,
+			filePath,
+			speechNo,
+			regno
+		)
+		VALUES
+		(
+			#{fDTO.fileOriginName},
+			#{fDTO.fileNewName},
+			#{fDTO.filePath},
+			#{sDTO.speechNo},
+			#{sDTO.regno}
+		)
+	</insert>
 </mapper>
 

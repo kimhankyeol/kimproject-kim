@@ -2,6 +2,7 @@ package poly.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import poly.dto.AuthorDTO;
 import poly.dto.FileDTO;
 import poly.dto.SpeechDTO;
 import poly.service.ISpeechService;
@@ -97,32 +97,48 @@ public class SpeechController {
 		
 		model.addAttribute("webType",webType);
 		model.addAttribute("sDTO",sDTO);
+		sDTO=null;
 		return "/speech/speechDetail";
 	}
 	@RequestMapping(value="/insertRecord",method=RequestMethod.POST)
-	public @ResponseBody String insertRecord(HttpServletRequest req,HttpSession session) throws Exception{
-		String path = req.getSession().getServletContext().getRealPath("/upload/");
+	public @ResponseBody String insertRecord(HttpServletRequest req,HttpSession session,Model model) throws Exception{
 		String spcNo = req.getParameter("spcNo");
+		String path = req.getSession().getServletContext().getRealPath("/upload/spcNo"+spcNo+"/userNo"+session.getAttribute("userNo").toString()+"/");
 		log.info(path);
+		
 		MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest)req;
-		log.info(mhsr.getFile("webRecorderFile").getOriginalFilename());
-		log.info(mhsr.getFile("webRecorderFile").getSize()/1024/172+"초");
-		log.info(session.getAttribute("userNo"));
 		String[] fileArray = FileUtil.fileNewString("webRecorderFile",mhsr,path);
-		/*File newFile =new File(fileArray[1]);
-		if(!newFile.isDirectory()) {
-			newFile.mkdirs();
-		}*/
-		FileDTO fDTO = new FileDTO();
+		
 		SpeechDTO sDTO = new SpeechDTO();
+		FileDTO fDTO = new FileDTO();
+		HashMap<String,Object> hMap = new HashMap<>();
 		sDTO.setSpeechNo(spcNo);
-		fDTO.setsDTO(sDTO);
+		sDTO.setRegno(session.getAttribute("userNo").toString());
 		fDTO.setFileOriginName(mhsr.getFile("webRecorderFile").getOriginalFilename());
 		fDTO.setFileNewName(fileArray[0]);
 		fDTO.setFilePath(path);
-		fDTO.setRegno();
+		hMap.put("sDTO", sDTO);
+		hMap.put("fDTO", fDTO);
+		File newFile =new File(fileArray[1]);
+		if(!newFile.isDirectory()) {
+			newFile.mkdirs();
+		}
+		mhsr.getFile("webRecorderFile").transferTo(newFile);
+		int result = speechService.insertFileSpeech(hMap);
+		String msg,url;
+		if(result==1) {
+			msg="등록하였습니다.";
+			url="/speech/mySpeechQuestion.do";
+		}else{
+			msg="실패하였습니다.";
+			url="/speech/mySpeechQuestion.do";
+		}
+			
 		
+		hMap=null;
+		sDTO=null;
+		fDTO=null;
 		
-		return null;
+		return "/alert";
 	}
 }

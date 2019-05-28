@@ -1,10 +1,11 @@
 package poly.dto;
 
-public class FileDTO extends AuthorDTO {
+public class FileDTO {
 	 private String fileNo;
 	 private String fileOriginName;
 	 private String filePath;
 	 private String fileNewName;
+	 
 	public String getFileNo() {
 		return fileNo;
 	}
