@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import config.Mapper;
+import poly.dto.AnswerDTO;
 import poly.dto.SpeechDTO;
 
 @Mapper("SpeechMapper")
@@ -19,6 +20,6 @@ public interface SpeechMapper {
 
 	public int insertFileSpeech(HashMap<String, Object> hMap) throws Exception;
 
-	public List<SpeechDTO> getAnswerList(SpeechDTO sDTO) throws Exception;
+	public List<AnswerDTO> getAnswerList(AnswerDTO aDTO) throws Exception;
 	
 }

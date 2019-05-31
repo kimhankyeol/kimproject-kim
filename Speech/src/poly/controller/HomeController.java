@@ -37,6 +37,7 @@ public class HomeController {
 	}
 	@RequestMapping(value="/home")
 	public String home() throws Exception{
+		log.info("home start"+this.getClass());
 		return "/home";
 	}
 

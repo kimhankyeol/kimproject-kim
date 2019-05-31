@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import poly.dto.AnswerDTO;
 import poly.dto.SpeechDTO;
 
 
@@ -19,7 +20,7 @@ public interface ISpeechService {
 
 	public int insertFileSpeech(HashMap<String, Object> hMap) throws Exception;
 
-	public List<SpeechDTO> getAnswerList(SpeechDTO sDTO) throws Exception;
+	public List<AnswerDTO> getAnswerList(AnswerDTO aDTO) throws Exception;
 
 
 }

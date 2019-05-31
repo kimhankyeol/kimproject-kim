@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import poly.dto.AnswerDTO;
 import poly.dto.SpeechDTO;
 import poly.persistance.mapper.SpeechMapper;
 import poly.service.ISpeechService;
@@ -61,9 +62,9 @@ public class SpeechService implements ISpeechService{
 	}
 
 	@Override
-	public List<SpeechDTO> getAnswerList(SpeechDTO sDTO) throws Exception {
+	public List<AnswerDTO> getAnswerList(AnswerDTO aDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return speechMapper.getAnswerList(sDTO);
+		return speechMapper.getAnswerList(aDTO);
 	}
 	
 	

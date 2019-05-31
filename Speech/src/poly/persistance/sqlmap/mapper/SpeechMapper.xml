@@ -22,7 +22,7 @@
 	</insert>
 	<select id="getMySpeechList" parameterType="SpeechDTO" resultType="SpeechDTO">
 		SELECT
-		* 
+		speechNo,spcJobTag,spcJobTitle,spcJobQuestion,regdate,regno,upddate,updno
 		FROM
 		SPEECH
 		WHERE 
@@ -30,13 +30,13 @@
 	</select>
 	<select id="getSpeechList" resultType="SpeechDTO">
 		SELECT
-		*
+		speechNo,spcJobTag,spcJobTitle,spcJobQuestion,regdate,regno,upddate,updno
 		FROM
 		SPEECH
 	</select>
 	<select id="getSpeechDetail" parameterType="SpeechDTO" resultType="SpeechDTO">
 		SELECT 
-		*
+		speechNo,spcJobTag,spcJobTitle,spcJobQuestion,regdate,regno,upddate,updno
 		FROM
 		SPEECH
 		WHERE
@@ -59,11 +59,10 @@
 			#{sDTO.regno}
 		)
 	</insert>
-	<select id="getAnswerList" parameterType="SpeechDTO"  resultMap="speech">
+	<select id="getAnswerList" parameterType="AnswerDTO"  resultType="AnswerDTO">
 	SELECT 
 	S.spcJobTitle AS spcJobTitle,
 	S.spcJobQuestion AS spcJobQuestion,
-	U.userNo AS userNo,
 	U.userName AS userName,
 	F.fileNewName AS fileNewName
 	FROM
@@ -74,20 +73,5 @@
 	ON F.regno = U.userNo 
 	</select>
 	
-	<!-- resultMap SpeechDTO FileDTO UserDTO -->
-	<resultMap type="FileDTO" id="FileDTO">
-		<result column="fileNewName" property="fileNewName"/>
-	</resultMap>
-	<resultMap type="UserDTO" id="UserDTO">
-		<result column="userNo" property="userNo"/>
-		<result column="userName" property="userName"/>
-	</resultMap>
-	<resultMap type="SpeechDTO" id="speech" >
-		<result column="speechNo" property="speechNo"/>
-		<result column="spcJobTitle" property="spcJobTitle"/>
-		<result column="spcJobQuestion" property="spcJobQuestion"/>
-		<collection property="file" resultMap="FileDTO"></collection>
-		<collection property="user" resultMap="UserDTO"></collection>
-	</resultMap>
 </mapper>
 

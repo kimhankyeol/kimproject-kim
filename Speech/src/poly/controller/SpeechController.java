@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import poly.dto.AnswerDTO;
 import poly.dto.FileDTO;
 import poly.dto.SpeechDTO;
 import poly.service.ISpeechService;
@@ -103,7 +104,8 @@ public class SpeechController {
 	@RequestMapping(value="/insertRecord",method=RequestMethod.POST)
 	public @ResponseBody String insertRecord(HttpServletRequest req,HttpSession session,Model model) throws Exception{
 		String spcNo = req.getParameter("spcNo");
-		String path = req.getSession().getServletContext().getRealPath("/upload/spcNo"+spcNo+"/userNo"+session.getAttribute("userNo").toString()+"/");
+		String path = req.getSession().getServletContext().getRealPath("/upload/spcNo-"+spcNo+"/userNo-"+session.getAttribute("userNo").toString()+"/");
+		log.info(path);
 		MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest)req;
 		String[] fileArray = FileUtil.fileNewString("webRecorderFile",mhsr,path);
 		SpeechDTO sDTO = new SpeechDTO();
@@ -140,14 +142,12 @@ public class SpeechController {
 	@RequestMapping("/answerList")
 	public String getAnswerList(HttpServletRequest req,Model model) throws Exception{
 		String spcNo=req.getParameter("spcNo");
-		List<SpeechDTO> sList=new ArrayList<>(); 
-		SpeechDTO sDTO = new SpeechDTO();
-		sDTO.setSpeechNo(spcNo);
-		sList = speechService.getAnswerList(sDTO);
+		List<AnswerDTO> sList=new ArrayList<>(); 
+		AnswerDTO aDTO = new AnswerDTO();
+		aDTO.setSpeechNo(spcNo);
+		sList = speechService.getAnswerList(aDTO);
 		log.info(sList.size());
-		for(int i=0 ;i<sList.size();i++) {
-			log.info(sList.get(i).getSpcJobQuestion());
-		}
+		
 		model.addAttribute("sList",sList);
 		return "/speech/speechAnswerList";
 	}
