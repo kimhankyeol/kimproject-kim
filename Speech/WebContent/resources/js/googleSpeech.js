@@ -32,7 +32,6 @@ const Sound = (function () {
         return snd;
     }
 }());
-
 const speechToText = {
 		settings:{
 			"async":true,
@@ -47,9 +46,10 @@ const speechToText = {
 			"processData":false,
 	},
 	speechToTextAjax:(speechBlob)=>{
-		speechToText.settings.data="{'config': {'encoding':'wav','sampleRateHertz': 16000, 'languageCode': 'ko-KR','enableWordTimeOffsets': false}, 'audio': { 'content':'"+speechBlob+"'}}"
+		speechToText.settings.data="{'config': {'encoding':'LINEAR16','sampleRateHertz': 48000, 'languageCode': 'ko-KR','enableWordTimeOffsets': false,'audioChannelCount':2}, 'audio': { 'content':'"+speechBlob+"'}}"
 		$.ajax(speechToText.settings).done(function(response){
 			console.log(response)
 		});
 	}
 }
+

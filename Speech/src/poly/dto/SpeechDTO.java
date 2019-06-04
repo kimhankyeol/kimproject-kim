@@ -10,22 +10,9 @@ public class SpeechDTO {
 	private String regno;
 	private String upddate;
 	private String updno;
-	private FileDTO file;
-	private UserDTO user;
 	
 
-	public FileDTO getFile() {
-		return file;
-	}
-	public void setFile(FileDTO file) {
-		this.file = file;
-	}
-	public UserDTO getUser() {
-		return user;
-	}
-	public void setUser(UserDTO user) {
-		this.user = user;
-	}
+
 	public String getRegdate() {
 		return regdate;
 	}

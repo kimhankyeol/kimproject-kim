@@ -63,6 +63,9 @@ const pageMove = {
 		answerList:function(spcNo){
 			location.href="/speech/answerList.do?&spcNo="+spcNo;
 		},
+		answerDetail:function(fileNo){
+			location.href="/speech/answerDetail.do?fileNo="+fileNo;
+		},
 		loginCbHref:function(name,email,snsVal){
 			location.href="loginCallback.do?name="+name+"&email="+email+"&snsVal="+snsVal;
 		},

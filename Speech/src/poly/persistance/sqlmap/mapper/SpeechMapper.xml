@@ -80,6 +80,18 @@
 	WHERE
 	fileNo=#{fileNo}
 	</select>
-	
+	<select id="getAnswerDetail" parameterType="AnswerDTO">
+	SELECT 
+	S.spcJobTitle AS spcJobTitle,
+	S.spcJobQuestion AS spcJobQuestion,
+	U.userName AS userName,
+	F.fileNewName AS fileNewName
+	FROM
+	SPEECH S
+	INNER JOIN FILE F
+	ON F.speechNo = S.speechNo  AND F.fileNo = #{fileNo}
+	INNER JOIN USER U
+	ON F.regno = U.userNo 
+	</select>
 </mapper>
 

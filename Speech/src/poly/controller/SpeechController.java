@@ -105,10 +105,9 @@ public class SpeechController {
 		return "/speech/speechDetail";
 	}
 	@RequestMapping(value="/insertRecord",method=RequestMethod.POST)
-	public @ResponseBody String insertRecord(HttpServletRequest req,HttpSession session,Model model) throws Exception{
+	public String insertRecord(HttpServletRequest req,HttpSession session,Model model) throws Exception{
 		String spcNo = req.getParameter("spcNo");
 		String path = req.getSession().getServletContext().getRealPath("/upload/spcNo-"+spcNo+"/userNo-"+session.getAttribute("userNo").toString()+"/");
-		log.info(path);
 		MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest)req;
 		String[] fileArray = FileUtil.fileNewString("webRecorderFile",mhsr,path);
 		SpeechDTO sDTO = new SpeechDTO();
@@ -139,7 +138,10 @@ public class SpeechController {
 		hMap=null;
 		sDTO=null;
 		fDTO=null;
-		
+		log.info(msg);
+		log.info(url);
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
 		return "/alert";
 	}
 	@RequestMapping("/answerList")
@@ -153,6 +155,15 @@ public class SpeechController {
 		
 		model.addAttribute("sList",sList);
 		return "/speech/speechAnswerList";
+	}
+	@RequestMapping("/answerDetail")
+	public String getAnswerDetail(HttpServletRequest req,Model model) throws Exception{
+		String fileNo = req.getParameter("fileNo");
+		AnswerDTO aDTO = new AnswerDTO();
+		aDTO.setFileNo("fileNo");
+		aDTO = speechService.getAnswerDetail(aDTO);
+		model.addAttribute("aDTO",aDTO);
+		return "/speech/answerDetail";
 	}
 	@RequestMapping("/changeBlob")
 	public @ResponseBody String getChangeBlob(HttpServletRequest req) throws Exception{

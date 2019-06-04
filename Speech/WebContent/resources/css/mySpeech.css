@@ -421,7 +421,18 @@ width:50%;
     padding: 15px 0px;
     margin-bottom: 15px;
 }
-
+.btnRegCss{
+    border-radius: 20px;
+    color: #00aeef;
+    border: 1px solid #00aeef;
+    padding: 15px 15px;
+    font-size: 0.874em;
+    line-height: 1.248em;
+    letter-spacing: -0.044em;
+    text-align:center;
+    margin-top:20px;
+    cursor:pointer;
+}
 /* .padLR .spcDetailTagScroll{
 	width: 25%;
 	overflow-x: scroll; 

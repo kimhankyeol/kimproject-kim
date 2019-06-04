@@ -13,6 +13,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 <title>닥터스피치-상세보기</title>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/view/mainTopBar.jsp"%>
@@ -68,7 +69,7 @@
 			    <img id="webPause" onclick="webPause()" src="/resources/image/recPause.svg" style="display:none;height:100px;padding-top: 10px;cursor:pointer" >	   
    			</div>
   			<div style="display: flex;justify-content:center;border:1px solid #dfdfdf;border-radius:10px;padding-bottom:24px;"> 
-			   <form id="uploadForm">
+			   <form id="uploadForm" action="/speech/insertRecord.do" method="post" enctype="multipart/form-data" >
 			   <input type="file" accept="audio/*" id="webRecorderFile" name="webRecorderFile" style="display:none"/>
 		   		<label for="webRecorderFile"  style="cursor:point" onchange="webRecorderUpload.wRecorderFileContent()">
 		  			<img src="/resources/image/filePlus.svg" style="display:table; padding-top:30px; padding-bottom:12px;margin:0px auto ;" />
@@ -79,8 +80,8 @@
 		   		<input type="hidden" name="spcNo" value="<%=sDTO.getSpeechNo()%>"/>
 		   		</form>
 		  	</div>
-		  	<button id="aj"> 등록하기 </button>
-		  	<div onclick="pageMove.answerList('<%=sDTO.getSpeechNo()%>')">질문 답변 목록 보기</div>
+		  	<div class="btnRegCss" onclick="uploadAudioFile.uploadFileSubmit()" > 등록하기 </div>
+		  	<div class="btnRegCss" onclick="pageMove.answerList('<%=sDTO.getSpeechNo()%>')">질문 답변 목록 보기</div>
 		  	<button id="jjkk"> 변환하기 </button>
 		  	<script src="/resources/js/record.js"></script>
 		<%} %> 
@@ -88,35 +89,34 @@
 
 <%@ include file="/WEB-INF/view/speechJsCss.jsp"%>
 	<script>
-		  $(function(){
-			  $('#aj').click(function(){
-			  		$("#uploadForm").ajaxForm({
-			  			url:"/speech/insertRecord.do",
-			  			enctype:"multipart/form-data",
-			  			method:"post",
-			  			success:function(data){
-			  				console.log(data)
-			  			}
-			  		}).submit();
-			  	})
-		  });
-		  
+	const uploadAudioFile={
+			uploadFileSubmit:function(){
+				if(document.getElementById("webRecorderFile").value==""){
+					alert('파일이 없습니다.')
+					return false;
+				}else{
+					document.getElementById("uploadForm").submit();
+				}
+				
+			}
+	}
 		
 		  $('#jjkk').click(function(){
-			 	$.ajax({
+				$.ajax({
 			 		url:"/speech/changeBlob.do",
 			 		method:"get",
 			 		data:{
-			 			fileNo:"5"
+			 			fileNo:"10"
 			 			},
 			 		success:function(data){
-			 			speechToText.speechToTextAjax(data)
+		 				speechToText.speechToTextAjax(data);
 			 		}
 			 	})
-		  })
-		 
-		  
+			})
+		
+			
 		  	</script>
+
 </body>
 
 </html>

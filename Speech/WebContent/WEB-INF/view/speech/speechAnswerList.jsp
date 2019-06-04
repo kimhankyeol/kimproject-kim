@@ -1,8 +1,9 @@
+<%@page import="poly.dto.AnswerDTO"%>
 <%@page import="poly.dto.SpeechDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <% List<SpeechDTO> sList = (List<SpeechDTO>)request.getAttribute("sList"); %>
+ <% List<AnswerDTO> sList = (List<AnswerDTO>)request.getAttribute("sList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +15,7 @@
 <body>
 <%@ include file="/WEB-INF/view/mainTopBar.jsp"%>
 <div class="headerMain">
-	<img src="/resources/image/arrow-left.svg"> 나의 면접 질문
+	<img src="/resources/image/arrow-left.svg"> <%=sList.get(0).getSpcJobTitle()%>
 </div>
  <div class="padLR">
    <div class="clientName">
@@ -24,16 +25,18 @@
    <div class="padLR10">
    		<div style="width:25%">번호</div>
    		<div style="width:50%">제목</div>
-   		<div style="width:25%">조회</div>
-   </div>
-   <div class="padLR10">
-   		<%for(int i = 0 ; i<sList.size();i++){ %>
-   		<div><%=i%></div>
-   		<div><%=sList.get(i).getUser().getUserName() %>...<%=sList.get(i).getSpcJobQuestion() %></div>
-   		<div>1</div>
-   		<%} %>
+   		<div style="width:25%">면접자</div>
    </div>
 </div>
+<%for(int i = 0 ; i<sList.size();i++){ %>
+<div class="padLR">
+	 <div class="padLR10">
+		<div style="width:25%"><%=i+1%></div>
+		<div style="width:50%" onclick="pageMove.answerDetail('<%=sList.get(i).getFileNo()%>')"><%=sList.get(i).getSpcJobQuestion() %></div>
+		<div style="width:25%"><%=sList.get(i).getUserName() %></div>
+	</div>
+</div>
+<%} %>
 </body>
 <%@ include file="/WEB-INF/view/speechJsCss.jsp"%>
 </html>
