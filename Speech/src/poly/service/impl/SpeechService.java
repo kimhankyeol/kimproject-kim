@@ -66,6 +66,12 @@ public class SpeechService implements ISpeechService{
 		// TODO Auto-generated method stub
 		return speechMapper.getAnswerList(aDTO);
 	}
+
+	@Override
+	public String getFileInfo(AnswerDTO aDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return speechMapper.getFileInfo(aDTO);
+	}
 	
 	
 	

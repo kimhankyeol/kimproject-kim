@@ -10,7 +10,15 @@ public class AnswerDTO {
 	  private String speechNo;
 	  private String regno;
 	  private String readCount;
+	  private String fileNo;
 	  
+	  
+	public String getFileNo() {
+		return fileNo;
+	}
+	public void setFileNo(String fileNo) {
+		this.fileNo = fileNo;
+	}
 	public String getReadCount() {
 		return readCount;
 	}

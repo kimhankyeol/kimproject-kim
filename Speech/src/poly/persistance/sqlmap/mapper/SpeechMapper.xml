@@ -72,6 +72,14 @@
 	INNER JOIN USER U
 	ON F.regno = U.userNo 
 	</select>
+	<select id="getFileInfo" parameterType="AnswerDTO" resultType="string">
+	SELECT
+	fileNewName
+	FROM
+	FILE
+	WHERE
+	fileNo=#{fileNo}
+	</select>
 	
 </mapper>
 

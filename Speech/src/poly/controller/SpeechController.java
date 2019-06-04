@@ -1,17 +1,20 @@
 package poly.controller;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -150,6 +153,36 @@ public class SpeechController {
 		
 		model.addAttribute("sList",sList);
 		return "/speech/speechAnswerList";
+	}
+	@RequestMapping("/changeBlob")
+	public @ResponseBody String getChangeBlob(HttpServletRequest req) throws Exception{
+		String fileNo = req.getParameter("fileNo");
+		AnswerDTO aDTO = new AnswerDTO();
+		aDTO.setFileNo(fileNo);
+		String filePath = speechService.getFileInfo(aDTO);
+		log.info(filePath);
+		String fileString = new String();
+
+	    FileInputStream inputStream =  null;
+	    ByteArrayOutputStream byteOutStream = null;
+		try {
+			inputStream = new FileInputStream(filePath);
+			byteOutStream = new ByteArrayOutputStream();
+			int len = 0;
+			byte[] buf = new byte[1024];
+			while ((len = inputStream.read(buf)) != -1) {
+				byteOutStream.write(buf, 0, len);
+			}
+			byte[] fileArray = byteOutStream.toByteArray();
+			fileString = new String(Base64.encodeBase64(fileArray));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			inputStream.close();
+			byteOutStream.close();
+		}
+
+		return fileString;
 	}
 	
 }

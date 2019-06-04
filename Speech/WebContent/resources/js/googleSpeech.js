@@ -32,3 +32,24 @@ const Sound = (function () {
         return snd;
     }
 }());
+
+const speechToText = {
+		settings:{
+			"async":true,
+			"crossDomain":true,
+			"url":"https://speech.googleapis.com/v1/speech:recognize",
+			"method":"POST",
+			"headers":{
+				"x-goog-api-key":jsonData.read.responseJSON.googleApiKey,
+				"content-type":"application/json",
+				"cache-control":"no-cache"
+			},
+			"processData":false,
+	},
+	speechToTextAjax:(speechBlob)=>{
+		speechToText.settings.data="{'config': {'encoding':'wav','sampleRateHertz': 16000, 'languageCode': 'ko-KR','enableWordTimeOffsets': false}, 'audio': { 'content':'"+speechBlob+"'}}"
+		$.ajax(speechToText.settings).done(function(response){
+			console.log(response)
+		});
+	}
+}

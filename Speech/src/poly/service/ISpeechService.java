@@ -22,5 +22,7 @@ public interface ISpeechService {
 
 	public List<AnswerDTO> getAnswerList(AnswerDTO aDTO) throws Exception;
 
+	public String getFileInfo(AnswerDTO aDTO) throws Exception;
+
 
 }
