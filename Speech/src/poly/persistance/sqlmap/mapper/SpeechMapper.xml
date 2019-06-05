@@ -28,11 +28,21 @@
 		WHERE 
 		regno=#{regno}
 	</select>
-	<select id="getSpeechList" resultType="SpeechDTO">
+	<select id="getSpeechList" resultType="AnswerDTO">
 		SELECT
-		speechNo,spcJobTag,spcJobTitle,spcJobQuestion,regdate,regno,upddate,updno
+		S.speechNo AS speechNo,
+		S.spcJobTag AS spcJobTag,
+		S.spcJobTitle AS spcJobTitle,
+		S.spcJobQuestion AS spcJobQuestion,
+		S.regno AS regno,
+		U.userName AS userName,
+		F.regdate AS regdate	
 		FROM
-		SPEECH
+		SPEECH S
+		INNER JOIN USER U 
+		ON S.REGNO =U.USERNO
+		INNER JOIN FILE F
+		ON F.regno = U.userNo 
 	</select>
 	<select id="getSpeechDetail" parameterType="SpeechDTO" resultType="SpeechDTO">
 		SELECT 
@@ -48,7 +58,8 @@
 			fileNewName,
 			filePath,
 			speechNo,
-			regno
+			regno,
+			regdate
 		)
 		VALUES
 		(
@@ -56,7 +67,8 @@
 			#{fDTO.fileNewName},
 			#{fDTO.filePath},
 			#{sDTO.speechNo},
-			#{sDTO.regno}
+			#{sDTO.regno},
+			now()
 		)
 	</insert>
 	<select id="getAnswerList" parameterType="AnswerDTO"  resultType="AnswerDTO">
@@ -64,7 +76,8 @@
 	S.spcJobTitle AS spcJobTitle,
 	S.spcJobQuestion AS spcJobQuestion,
 	U.userName AS userName,
-	F.fileNewName AS fileNewName
+	F.fileNewName AS fileNewName,
+	F.fileNo AS fileNo
 	FROM
 	SPEECH S
 	INNER JOIN FILE F
@@ -80,7 +93,7 @@
 	WHERE
 	fileNo=#{fileNo}
 	</select>
-	<select id="getAnswerDetail" parameterType="AnswerDTO">
+	<select id="getAnswerDetail" parameterType="AnswerDTO" resultType="AnswerDTO">
 	SELECT 
 	S.spcJobTitle AS spcJobTitle,
 	S.spcJobQuestion AS spcJobQuestion,

@@ -14,7 +14,7 @@ public interface SpeechMapper {
 
 	public List<SpeechDTO> getMySpeechList(SpeechDTO sDTO) throws Exception;
 
-	public List<SpeechDTO> getSpeechList() throws Exception;
+	public List<AnswerDTO> getSpeechList() throws Exception;
 
 	public SpeechDTO getSpeechDetail(SpeechDTO sDTO) throws Exception;
 

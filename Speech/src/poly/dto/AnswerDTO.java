@@ -3,16 +3,30 @@ package poly.dto;
 public class AnswerDTO {
 	  private String spcJobTitle;
 	  private String spcJobQuestion;
+	  private String spcJobTag;
 	  private String userName;
 	  private String fileOriginName;
 	  private String fileNewName;
 	  private String filePath;
 	  private String speechNo;
 	  private String regno;
+	  private String regdate; 
 	  private String readCount;
 	  private String fileNo;
 	  
 	  
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+	public String getSpcJobTag() {
+		return spcJobTag;
+	}
+	public void setSpcJobTag(String spcJobTag) {
+		this.spcJobTag = spcJobTag;
+	}
 	public String getFileNo() {
 		return fileNo;
 	}

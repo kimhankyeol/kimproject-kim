@@ -17,7 +17,8 @@ const restApiAjax ={
 };
 
 const jsonData = {
-		read :$.getJSON('/resources/json/privateInfo.json',function(data){
-		})
+		read :"api키를 넣으세요"
+			/*$.getJSON('/resources/json/privateInfo.json',function(data){
+		})*/
 		
 }

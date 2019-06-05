@@ -18,7 +18,7 @@ const init = {
 function googleInit(){
 	gapi.load('auth2',function(){
 		auth2 = gapi.auth2.init({
-			client_id: '1035513150483-b85u86ja2qpj75ertnrq5pt1qhd8r97e.apps.googleusercontent.com',
+			client_id: '1035513150483-rk4uoc588dmfecoh9j842sfs6tnjp8ok.apps.googleusercontent.com',
 			cookiepolicy:'single_host_origin'
 		});
 	});

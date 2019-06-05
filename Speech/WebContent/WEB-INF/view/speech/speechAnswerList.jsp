@@ -15,7 +15,7 @@
 <body>
 <%@ include file="/WEB-INF/view/mainTopBar.jsp"%>
 <div class="headerMain">
-	<img src="/resources/image/arrow-left.svg"> <%=sList.get(0).getSpcJobTitle()%>
+	<img src="/resources/image/arrow-left.svg"> 면접 제목 : <%=sList.get(0).getSpcJobTitle()%>
 </div>
  <div class="padLR">
    <div class="clientName">
@@ -28,15 +28,30 @@
    		<div style="width:25%">면접자</div>
    </div>
 </div>
-<%for(int i = 0 ; i<sList.size();i++){ %>
-<div class="padLR">
-	 <div class="padLR10">
-		<div style="width:25%"><%=i+1%></div>
-		<div style="width:50%" onclick="pageMove.answerDetail('<%=sList.get(i).getFileNo()%>')"><%=sList.get(i).getSpcJobQuestion() %></div>
-		<div style="width:25%"><%=sList.get(i).getUserName() %></div>
+<% if(sList.get(0).getFileNo().equals("nFile")){ %>
+	<div class="noAnswerText" >등록된 면접이 없습니다.</div>
+	<div class="answerTextFlex">
+		<div class="btnRegCss2" onclick="pageMove.singleParam('home')"> 홈 </div>
+		<div class="btnRegCss2" onclick="pageMove.speech('jobCtgSpeech')"> 업계별 면접보러 가기 </div>
+		<div class="btnRegCss2"  onclick="pageMove.webCtgSpcDetail('<%=sList.get(0).getSpeechNo()%>')"> 녹음하러가기 </div>
 	</div>
-</div>
+<%}else{ %>
+	<%for(int i = 0 ; i<sList.size();i++){ %>
+	<div class="padLR">
+		 <div class="padLR10" style="color:black;">
+			<div style="width:25%"><%=i+1%></div>
+			<div class="ansEllipse" style="width:50%" onclick="pageMove.answerDetail('<%=sList.get(i).getFileNo()%>')"><%=sList.get(i).getSpcJobQuestion() %></div>
+			<div style="width:25%"><%=sList.get(i).getUserName() %></div>
+		</div>
+	</div>
+	<div  class="answerTextFlex">
+		<div class="btnRegCss2" onclick="pageMove.singleParam('home')"> 홈 </div>
+		<div class="btnRegCss2" onclick="pageMove.speech('jobCtgSpeech')"> 업계별 면접보러 가기 </div>
+		<div class="btnRegCss2" onclick="pageMove.webCtgSpcDetail('<%=sList.get(0).getSpeechNo()%>')"> 녹음하러가기 </div>
+	</div>
+	<%} %>
 <%} %>
+
 </body>
 <%@ include file="/WEB-INF/view/speechJsCss.jsp"%>
 </html>

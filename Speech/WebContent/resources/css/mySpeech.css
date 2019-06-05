@@ -433,6 +433,37 @@ width:50%;
     margin-top:20px;
     cursor:pointer;
 }
+
+.noAnswerText{
+	padding-top:50px; 
+	padding-bottom:50px;
+	text-align: center
+}
+.answerTextFlex{
+	display: flex;
+	justify-content: center;
+}
+
+.answerTextFlex .btnRegCss2{
+    border-radius: 20px;
+    color: #00aeef;
+    border: 1px solid #00aeef;
+    padding: 15px 15px;
+    font-size: 0.874em;
+    line-height: 1.248em;
+    letter-spacing: -0.044em;
+    text-align:center;
+    margin-top:20px;
+    cursor:pointer;
+    margin-right: 10px;
+    
+}
+.padLR10 .ansEllipse{
+	text-overflow:ellipsis;
+	 white-space: nowrap;
+	 overflow: hidden;
+}
+
 /* .padLR .spcDetailTagScroll{
 	width: 25%;
 	overflow-x: scroll; 

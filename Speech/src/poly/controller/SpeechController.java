@@ -70,7 +70,7 @@ public class SpeechController {
 	}
 	@RequestMapping(value="/jobCtgSpeech")
 	public String jobCtgSpeech(Model model) throws Exception {
-		List<SpeechDTO> sList = new ArrayList<>();
+		List<AnswerDTO> sList = new ArrayList<>();
 		sList = speechService.getSpeechList();
 		model.addAttribute("sList",sList);
 		return "/speech/jobCtgSpeech";
@@ -149,11 +149,24 @@ public class SpeechController {
 		String spcNo=req.getParameter("spcNo");
 		List<AnswerDTO> sList=new ArrayList<>(); 
 		AnswerDTO aDTO = new AnswerDTO();
+		SpeechDTO sDTO = new SpeechDTO();
 		aDTO.setSpeechNo(spcNo);
 		sList = speechService.getAnswerList(aDTO);
 		log.info(sList.size());
-		
-		model.addAttribute("sList",sList);
+		if(sList.size()==0) {
+			sDTO.setSpeechNo(spcNo);
+			sDTO=speechService.getSpeechDetail(sDTO);
+			aDTO.setFileNo("nFile");
+			aDTO.setSpcJobTitle(sDTO.getSpcJobTitle());
+			sList.add(aDTO);
+			model.addAttribute("sList",sList);
+		}else {
+			model.addAttribute("sList",sList);
+		}
+		sList=null;
+		aDTO=null;
+		sDTO=null;
+	
 		return "/speech/speechAnswerList";
 	}
 	@RequestMapping("/answerDetail")

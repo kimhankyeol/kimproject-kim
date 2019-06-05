@@ -1,9 +1,9 @@
+<%@page import="poly.dto.AnswerDTO"%>
 <%@page import="poly.util.StringUtil"%>
-<%@page import="poly.dto.SpeechDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% List<SpeechDTO> sList = (List<SpeechDTO>) request.getAttribute("sList");%>
+<% List<AnswerDTO> sList = (List<AnswerDTO>) request.getAttribute("sList");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,13 +37,13 @@
    		</div>
    </div>
    <div class="padLR82">
-   		<div class="spcRecOrder" onclick="recomDateSelect.recommend('id')">조회순</div>
+   		<div class="spcRecOrder" onclick="recomDateSelect.recommend('id')">답변순</div>
    		<div class="spcDateOrder" onclick="recomDateSelect.date('id')">날짜순</div>   
    </div>
    <div class="padLR10">
    		<div style="width:25%">태그</div>
    		<div style="width:50%">제목</div>
-   		<div style="width:25%">조회</div>
+   		<div style="width:25%">면접 출제자</div>
    </div>
   <%for(int i = 0 ; i <sList.size(); i++){ %>
    <div class="padLR10">
@@ -56,10 +56,10 @@
    		</div>
    		<div class="spcTitle">
    			<div><%=sList.get(i).getSpcJobTitle() %></div>
-   			<div><%=sList.get(i).getRegdate() %></div>
+   			<div>면접 등록일:<%=sList.get(i).getRegdate() %></div>
    		</div>
    		<div style="width:25%;">
-   			3
+   			<%=sList.get(i).getUserName() %>
    		</div>
    </div>
    <%} %>

@@ -13,7 +13,7 @@ const textToSpeech ={
 			"url":"https://texttospeech.googleapis.com/v1/text:synthesize",
 			"method":"POST",
 			"headers":{
-				"x-goog-api-key":jsonData.read.responseJSON.googleApiKey,
+				"x-goog-api-key":jsonData.read,
 				"content-type":"application/json",
 				"cache-control":"no-cache"
 			},
@@ -39,7 +39,7 @@ const speechToText = {
 			"url":"https://speech.googleapis.com/v1/speech:recognize",
 			"method":"POST",
 			"headers":{
-				"x-goog-api-key":jsonData.read.responseJSON.googleApiKey,
+				"x-goog-api-key":jsonData.read,
 				"content-type":"application/json",
 				"cache-control":"no-cache"
 			},
