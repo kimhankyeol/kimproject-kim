@@ -26,5 +26,7 @@ public interface ISpeechService {
 
 	public AnswerDTO getAnswerDetail(AnswerDTO aDTO) throws Exception;
 
+	public int insertSpeechData(AnswerDTO aDTO) throws Exception;
+
 
 }

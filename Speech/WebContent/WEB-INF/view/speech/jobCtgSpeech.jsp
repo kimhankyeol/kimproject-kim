@@ -54,8 +54,8 @@
    			</div>
  			<%} %>
    		</div>
-   		<div class="spcTitle">
-   			<div><%=sList.get(i).getSpcJobTitle() %></div>
+   		<div class="spcTitle" style="cursor:pointer" onclick="pageMove.webCtgSpcDetail('<%=sList.get(i).getSpeechNo()%>')">
+   			<div ><%=sList.get(i).getSpcJobTitle() %></div>
    			<div>면접 등록일:<%=sList.get(i).getRegdate() %></div>
    		</div>
    		<div style="width:25%;">

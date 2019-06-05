@@ -44,12 +44,12 @@
 			<div style="width:25%"><%=sList.get(i).getUserName() %></div>
 		</div>
 	</div>
+	<%} %>
 	<div  class="answerTextFlex">
 		<div class="btnRegCss2" onclick="pageMove.singleParam('home')"> 홈 </div>
 		<div class="btnRegCss2" onclick="pageMove.speech('jobCtgSpeech')"> 업계별 면접보러 가기 </div>
 		<div class="btnRegCss2" onclick="pageMove.webCtgSpcDetail('<%=sList.get(0).getSpeechNo()%>')"> 녹음하러가기 </div>
 	</div>
-	<%} %>
 <%} %>
 
 </body>

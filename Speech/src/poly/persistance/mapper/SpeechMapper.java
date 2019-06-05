@@ -25,5 +25,7 @@ public interface SpeechMapper {
 	public String getFileInfo(AnswerDTO aDTO) throws Exception;
 
 	public AnswerDTO getAnswerDetail(AnswerDTO aDTO) throws Exception;
+
+	public int insertSpeechData(AnswerDTO aDTO) throws Exception;
 	
 }

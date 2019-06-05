@@ -61,7 +61,7 @@ const pageMove = {
 			location.href="/speech/detail.do?webType="+webtype+"&spcNo="+spcNo;
 		},
 		answerList:function(spcNo){
-			location.href="/speech/answerList.do?&spcNo="+spcNo;
+			location.href="/speech/answerList.do?spcNo="+spcNo;
 		},
 		answerDetail:function(fileNo){
 			location.href="/speech/answerDetail.do?fileNo="+fileNo;

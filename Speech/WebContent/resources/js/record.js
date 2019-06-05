@@ -15,16 +15,11 @@ const webRecorderUpload = {
 		fileContent:document.getElementById('fileContent'),
 		wRecorderFileContent:document.getElementById('webRecorderFile').addEventListener('change',function(e){
 			let file = e.target.files[0];
-			console.table(file)
 			fileContent.innerHTML="<div>파일명 : "+file.name+"</div>"
 								+"<div>용량 :"+file.size/1024/1024+"MB </div>"
 								+"<div>시간 :"+file.size/1024/172+"초</div>"
 		})
 }
-
-
-
-
 
 //webRecorder
 var mic,recorder,soundFile,amp;

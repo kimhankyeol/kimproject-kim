@@ -3,6 +3,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.sun.net.ssl.HttpsURLConnection;
 
 import poly.dto.AnswerDTO;
 import poly.dto.FileDTO;
@@ -105,11 +110,12 @@ public class SpeechController {
 		return "/speech/speechDetail";
 	}
 	@RequestMapping(value="/insertRecord",method=RequestMethod.POST)
-	public String insertRecord(HttpServletRequest req,HttpSession session,Model model) throws Exception{
+	public @ResponseBody HashMap<String,Object> insertRecord(HttpServletRequest req,HttpSession session,Model model) throws Exception{
 		String spcNo = req.getParameter("spcNo");
-		String path = req.getSession().getServletContext().getRealPath("/upload/spcNo-"+spcNo+"/userNo-"+session.getAttribute("userNo").toString()+"/");
+		String userNo = CmmUtil.nvl(session.getAttribute("userNo").toString());
+		String path = req.getSession().getServletContext().getRealPath("/upload/spcNo-"+spcNo+"/userNo-"+userNo+"/");
 		MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest)req;
-		String[] fileArray = FileUtil.fileNewString("webRecorderFile",mhsr,path);
+		String[] fileArray = FileUtil.fileNewString("webRecorderFile",mhsr,path,userNo);
 		SpeechDTO sDTO = new SpeechDTO();
 		FileDTO fDTO = new FileDTO();
 		HashMap<String,Object> hMap = new HashMap<>();
@@ -121,25 +127,57 @@ public class SpeechController {
 		hMap.put("sDTO", sDTO);
 		hMap.put("fDTO", fDTO);
 		int result = speechService.insertFileSpeech(hMap);
-		String msg,url;
+		String url;
 		if(result==1) {
-			File newFile =new File(fileArray[1]);
+			File newFile =new File(fileArray[0]);
 			if(!newFile.isDirectory()) {
 				newFile.mkdirs();
 			}
 			mhsr.getFile("webRecorderFile").transferTo(newFile);
-			msg="등록하였습니다.";
-			url="/speech/mySpeechQuestion.do";
+			url="/speech/changeBlob.do";
 		}else{
-			msg="실패하였습니다.";
-			url="/speech/mySpeechQuestion.do";
+			url="/speech/answerList.do?spcNo="+spcNo;
 		}
 		
-		hMap=null;
-		sDTO=null;
-		fDTO=null;
-		log.info(msg);
-		log.info(url);
+		hMap.put("url",url);
+		return hMap;
+	}
+	@RequestMapping(value="/changeBlob")
+	public @ResponseBody String getChangeBlob(HttpServletRequest req) throws Exception{
+		String fileNo = req.getParameter("fileNo");
+		log.info(fileNo);
+		AnswerDTO aDTO = new AnswerDTO();
+		aDTO.setFileNo(fileNo);
+		String filePath = speechService.getFileInfo(aDTO);
+	/*	String filePath = fDTO.getFileNewName();
+		FileUtil.audioToBuffer(filePath);*/
+		return FileUtil.audioToBuffer(filePath);
+	}
+	@RequestMapping(value="/speechDataInsert")
+	public String insertSpeechData(HttpServletRequest req,Model model) throws Exception{
+		String transcript = req.getParameter("transcript");
+		String confidence = req.getParameter("confidence");
+		String fileNo = req.getParameter("fileNo");
+		String spcNo = req.getParameter("spcNo");
+		
+		AnswerDTO aDTO = new AnswerDTO();
+		aDTO.setTranscript(transcript);
+		aDTO.setConfidence(confidence);
+		aDTO.setFileNo(fileNo);
+		int result = speechService.insertSpeechData(aDTO);
+		log.info(transcript);
+		log.info(confidence);
+		log.info(fileNo);
+		log.info(spcNo);
+		String msg,url;
+		if(result==1) {
+			msg="면접 답이 등록되었습니다.";
+			url="/speech/answerList.do?spcNo="+spcNo;
+		}else {
+			msg="면접 답이 실패되었습니다.";
+			url="/speech/answerList.do?spcNo="+spcNo;
+		}
+		
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
 		return "/alert";
@@ -173,40 +211,11 @@ public class SpeechController {
 	public String getAnswerDetail(HttpServletRequest req,Model model) throws Exception{
 		String fileNo = req.getParameter("fileNo");
 		AnswerDTO aDTO = new AnswerDTO();
-		aDTO.setFileNo("fileNo");
+		aDTO.setFileNo(fileNo);
 		aDTO = speechService.getAnswerDetail(aDTO);
 		model.addAttribute("aDTO",aDTO);
 		return "/speech/answerDetail";
 	}
-	@RequestMapping("/changeBlob")
-	public @ResponseBody String getChangeBlob(HttpServletRequest req) throws Exception{
-		String fileNo = req.getParameter("fileNo");
-		AnswerDTO aDTO = new AnswerDTO();
-		aDTO.setFileNo(fileNo);
-		String filePath = speechService.getFileInfo(aDTO);
-		log.info(filePath);
-		String fileString = new String();
-
-	    FileInputStream inputStream =  null;
-	    ByteArrayOutputStream byteOutStream = null;
-		try {
-			inputStream = new FileInputStream(filePath);
-			byteOutStream = new ByteArrayOutputStream();
-			int len = 0;
-			byte[] buf = new byte[1024];
-			while ((len = inputStream.read(buf)) != -1) {
-				byteOutStream.write(buf, 0, len);
-			}
-			byte[] fileArray = byteOutStream.toByteArray();
-			fileString = new String(Base64.encodeBase64(fileArray));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			inputStream.close();
-			byteOutStream.close();
-		}
-
-		return fileString;
-	}
+	
 	
 }

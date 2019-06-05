@@ -45,10 +45,13 @@ const speechToText = {
 			},
 			"processData":false,
 	},
-	speechToTextAjax:(speechBlob)=>{
+	speechToTextAjax:(speechBlob,param)=>{
 		speechToText.settings.data="{'config': {'encoding':'LINEAR16','sampleRateHertz': 48000, 'languageCode': 'ko-KR','enableWordTimeOffsets': false,'audioChannelCount':2}, 'audio': { 'content':'"+speechBlob+"'}}"
 		$.ajax(speechToText.settings).done(function(response){
-			console.log(response)
+			const transcript = response.results[0].alternatives[0].transcript;
+			const confidence = response.results[0].alternatives[0].confidence;
+			location.href="/speech/speechDataInsert.do?transcript="+transcript+"&confidence="+confidence+"&fileNo="+param.fileNo+"&spcNo="+param.sDTO.speechNo
+			
 		});
 	}
 }

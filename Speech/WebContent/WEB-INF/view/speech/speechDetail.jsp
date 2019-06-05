@@ -95,24 +95,37 @@
 					alert('파일이 없습니다.')
 					return false;
 				}else{
-					document.getElementById("uploadForm").submit();
+					$("#uploadForm").ajaxForm({
+			  			url:"/speech/insertRecord.do",
+			  			enctype:"multipart/form-data",
+			  			method:"post",
+			  			success:function(data){
+			  				uploadAudioFile.uploadBuffer(data);
+			  			},
+			  			error:function(error){
+			  				alert("첫번째 ajax 에러 발생:"+error);
+			  			}
+			  		}).submit();
 				}
 				
-			}
-	}
-		
-		  $('#jjkk').click(function(){
+			},
+			uploadBuffer:function(param){
+				var paramInfo = param;
 				$.ajax({
-			 		url:"/speech/changeBlob.do",
+			 		url:param.url,
 			 		method:"get",
 			 		data:{
-			 			fileNo:"10"
+			 			fileNo:param.fileNo
 			 			},
 			 		success:function(data){
-		 				speechToText.speechToTextAjax(data);
-			 		}
+		 				speechToText.speechToTextAjax(data,paramInfo);
+			 		},
+			 		error:function(error){
+		  				alert("두번째 ajax 에러 발생:"+error);
+		  			}
 			 	})
-			})
+			}
+	}
 		
 			
 		  	</script>

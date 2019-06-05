@@ -13,8 +13,22 @@ public class AnswerDTO {
 	  private String regdate; 
 	  private String readCount;
 	  private String fileNo;
+	  private String transcript;
+	  private String confidence;
 	  
 	  
+	public String getTranscript() {
+		return transcript;
+	}
+	public void setTranscript(String transcript) {
+		this.transcript = transcript;
+	}
+	public String getConfidence() {
+		return confidence;
+	}
+	public void setConfidence(String confidence) {
+		this.confidence = confidence;
+	}
 	public String getRegdate() {
 		return regdate;
 	}

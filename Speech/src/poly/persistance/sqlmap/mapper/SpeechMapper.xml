@@ -35,14 +35,12 @@
 		S.spcJobTitle AS spcJobTitle,
 		S.spcJobQuestion AS spcJobQuestion,
 		S.regno AS regno,
-		U.userName AS userName,
-		F.regdate AS regdate	
+        S.regdate AS regdate,
+		U.userName AS userName
 		FROM
 		SPEECH S
 		INNER JOIN USER U 
 		ON S.REGNO =U.USERNO
-		INNER JOIN FILE F
-		ON F.regno = U.userNo 
 	</select>
 	<select id="getSpeechDetail" parameterType="SpeechDTO" resultType="SpeechDTO">
 		SELECT 
@@ -70,9 +68,13 @@
 			#{sDTO.regno},
 			now()
 		)
+		<selectKey resultType="string" keyProperty="fileNo" order="AFTER">
+		SELECT last_insert_id() FROM DUAL;
+		</selectKey> 
 	</insert>
 	<select id="getAnswerList" parameterType="AnswerDTO"  resultType="AnswerDTO">
 	SELECT 
+	S.speechNo AS speechNo,
 	S.spcJobTitle AS spcJobTitle,
 	S.spcJobQuestion AS spcJobQuestion,
 	U.userName AS userName,
@@ -106,5 +108,21 @@
 	INNER JOIN USER U
 	ON F.regno = U.userNo 
 	</select>
+	<insert id="insertSpeechData" parameterType="AnswerDTO">
+	INSERT
+	answer
+	(
+		transcript,
+		confidence,
+		fileNo
+	)
+	values
+	(
+		#{transcript},
+		#{confidence},
+		#{fileNo}
+	
+	)
+	</insert>
 </mapper>
 
