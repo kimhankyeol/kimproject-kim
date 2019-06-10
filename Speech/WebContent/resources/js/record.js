@@ -1,21 +1,23 @@
+
 const mobileRecord={
-	mRecorder:document.getElementById('mRecorder'),
-	mPlayer:document.getElementById('mPlayer'),
-	andRecord:function(){
-		if(mobileRecord.mRecorder){
-			mobileRecord.mRecorder.addEventListener('change',function(e){
-				let file = e.target.files[0];
-				mPlayer.src = URL.createObjectURL(file);
-			})
-		}
-	}
+	mRecorder:$('#mRecorder'),
+	mPlayer:$('#mPlayer')
 } 
+$('#mRecorder').change(function(e){
+	let file = e.target.files[0];
+	console.table(file)
+	mPlayer.src = URL.createObjectURL(file);
+	document.getElementById('fileContent').innerHTML="<div>파일명 : "+file.name+"</div>"
+	+"<div>용량 :"+file.size/1024/1024+"MB </div>"
+	+"<div>시간 :"+file.size/1024/172+"초</div>";
+})
+
 //pc 녹음
 const webRecorderUpload = {
 		fileContent:document.getElementById('fileContent'),
 		wRecorderFileContent:document.getElementById('webRecorderFile').addEventListener('change',function(e){
 			let file = e.target.files[0];
-			fileContent.innerHTML="<div>파일명 : "+file.name+"</div>"
+			webRecorderUpload.fileContent.innerHTML="<div>파일명 : "+file.name+"</div>"
 								+"<div>용량 :"+file.size/1024/1024+"MB </div>"
 								+"<div>시간 :"+file.size/1024/172+"초</div>"
 		})

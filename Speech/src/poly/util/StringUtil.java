@@ -96,5 +96,10 @@ public class StringUtil {
 		String time = format.format(date);
 		return time;
 	}
+	public static String reverseSlash(String filePath) {
+		String str = filePath.replaceAll("\\\\","/"); 
+System.out.println(str);
+		return str;
+	}
 	
 }

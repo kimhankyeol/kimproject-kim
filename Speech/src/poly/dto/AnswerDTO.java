@@ -15,8 +15,36 @@ public class AnswerDTO {
 	  private String fileNo;
 	  private String transcript;
 	  private String confidence;
+	  private String word;
+	  private String term;
+	  private String startTime;
+	  private String endTime;
 	  
 	  
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	public String getWord() {
+		return word;
+	}
+	public void setWord(String word) {
+		this.word = word;
+	}
+	public String getTerm() {
+		return term;
+	}
+	public void setTerm(String term) {
+		this.term = term;
+	}
 	public String getTranscript() {
 		return transcript;
 	}

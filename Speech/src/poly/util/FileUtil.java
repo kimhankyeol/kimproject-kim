@@ -13,6 +13,7 @@ public class FileUtil {
 	public static String[] fileNewString(String param,MultipartHttpServletRequest file,String path,String userNo) {
 		String fileServerName="";
 		String fileOrgName=file.getFile(param).getOriginalFilename();
+		System.out.println(fileOrgName);
 		String extended = fileOrgName.substring(fileOrgName.indexOf("."),fileOrgName.length());
 		String now = new SimpleDateFormat("yyyyMMddhmsS").format(new Date()); //현재시간 나타내는 변수
 		fileServerName=path+now+"-"+userNo+extended;//새로운 파일명으로 저장할 위치경로 + 시간 + 확장자 

@@ -31,7 +31,7 @@
     <div onclick="pageMove.speech('list')"> 면접 메인으로 가기 </div>
     <div onclick="snsLogInOut.logout('<%=session.getAttribute("snsVal")%>')">로그아웃</div>
     <%} %> 
- 
+ <%@ include file="speechJsCss.jsp"%>
 </body>
-<%@ include file="speechJsCss.jsp"%>
+
 </html>

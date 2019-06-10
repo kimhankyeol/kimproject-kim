@@ -51,7 +51,6 @@
 		<div class="btnRegCss2" onclick="pageMove.webCtgSpcDetail('<%=sList.get(0).getSpeechNo()%>')"> 녹음하러가기 </div>
 	</div>
 <%} %>
-
 </body>
 <%@ include file="/WEB-INF/view/speechJsCss.jsp"%>
 </html>

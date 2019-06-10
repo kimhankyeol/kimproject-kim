@@ -6,14 +6,14 @@
 	SELECT 
 		COUNT(*)
 	FROM
-		USER
+		user
 	WHERE
 		userEmail=#{userEmail}
 	</select>
 
 	<insert id="insertUserRegSns" parameterType="UserDTO">
 	INSERT 
-		INTO USER
+		INTO user
 		(
 		userName,
 		userEmail,
@@ -35,7 +35,7 @@
 	SELECT
 		userNo
 	FROM
-		USER
+		user
 	WHERE
 		userEmail=#{userEmail} and snsVal=#{snsVal}
 	</select>

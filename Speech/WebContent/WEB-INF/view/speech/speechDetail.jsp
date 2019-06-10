@@ -44,12 +44,26 @@
 			<div style="width:30%;text-align:center" ><img src="/resources/image/play.png" onclick="textToSpeech.settingsPush('<%=sDTO.getSpcJobQuestion()%>')" style="height: 67.56px"/></div>
 		</div>
 		<%if (webType.equals("m")){ %>
-		<input type="file" accept="audio/*" capture="microphone" id="recorder" />
-        <audio id="player" controls></audio>
-      	<script src=""></script>
-
+			<div style="display: flex;justify-content:center;border:1px solid #dfdfdf;border-radius:10px;padding-bottom:24px;"> 
+			   <form id="uploadForm" action="/speech/insertRecord.do" method="post" enctype="multipart/form-data" >
+			   <input type="file" id="mRecorder" accept="audio/*" capture="microphone" name="mobileRecorderFile"  style="display:none"/>
+		   		<label for="mRecorder"  style="cursor:point">
+		  			<img src="/resources/image/filePlus.svg" style="display:table; padding-top:30px; padding-bottom:12px;margin:0px auto" />
+		   			<p style="text-align:center;color:#6f6f6f">오디오 파일은 1개만 첨부 가능합니다.</p>
+		   			<p style="color:#3990ff">녹음 된 파일은 다운로드 폴더에 저장되어있습니다.</p>
+		   		</label>
+		   		<div id="fileContent"></div>
+		   		<input type="hidden" name="spcNo" value="<%=sDTO.getSpeechNo()%>"/>
+		   		<input type="hidden" name="webType" value="<%=webType%>"/>
+		   		</form>
+		  	</div>
+			<div style="display: flex; justify-content: center;padding-top:15px">
+				<audio id="mPlayer" controls></audio>
+			</div>
+			<div class="btnRegCss" onclick="uploadAudioFile.uploadFileSubmit('m')" > 등록하기 </div>
+		  	<div class="btnRegCss" onclick="pageMove.answerList('<%=sDTO.getSpeechNo()%>')">질문 답변 목록 보기</div>
 		<%}else{ %>
-
+			
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.js"></script>
 		    <script src="/resources/js/sketch.js"></script>
@@ -78,58 +92,34 @@
 		   			<div id="fileContent"></div>
 		   		</label>
 		   		<input type="hidden" name="spcNo" value="<%=sDTO.getSpeechNo()%>"/>
+		   		<input type="hidden" name="webType" value="p"/>
 		   		</form>
 		  	</div>
-		  	<div class="btnRegCss" onclick="uploadAudioFile.uploadFileSubmit()" > 등록하기 </div>
-		  	<div class="btnRegCss" onclick="pageMove.answerList('<%=sDTO.getSpeechNo()%>')">질문 답변 목록 보기</div>
-		  	<button id="jjkk"> 변환하기 </button>
-		  	<script src="/resources/js/record.js"></script>
+		  	<div class="btnRegCss" onclick="uploadAudioFile.uploadFileSubmit('p')" > 등록하기 </div>
+		  	<div class="btnRegCss" style="margin-bottom:20px"  onclick="pageMove.answerList('<%=sDTO.getSpeechNo()%>')">질문 답변 목록 보기</div>
 		<%} %> 
    </div>
-
+   <div onclick="siva()">asdasd</div>
+   <script>
+   function siva(){
+	 
+	   
+	   var vlist=new Array({name:'kimhan',age:28},{name:'kimhan',age:28},{name:'kimhan',age:28})
+	  console.table(vlist)
+	  var kim2=JSON.stringify(vlist);
+	   var kim3=encodeURIComponent(kim2);
+	   location.href="/test2.do?json="+kim3;
+	   
+   }
+   </script>
+    <!--로딩바 -->
+<div id="loading">
+	<div id="loading-image" >
+		<img src="/resources/image/ajax-loader.gif" alt="Loading..." />
+		<div> 음성정보를 텍스트로 변환중입니다.</div>
+		<div> 최대 몇분이 걸릴수 있습니다.</div>
+	</div>
+</div>
 <%@ include file="/WEB-INF/view/speechJsCss.jsp"%>
-	<script>
-	const uploadAudioFile={
-			uploadFileSubmit:function(){
-				if(document.getElementById("webRecorderFile").value==""){
-					alert('파일이 없습니다.')
-					return false;
-				}else{
-					$("#uploadForm").ajaxForm({
-			  			url:"/speech/insertRecord.do",
-			  			enctype:"multipart/form-data",
-			  			method:"post",
-			  			success:function(data){
-			  				uploadAudioFile.uploadBuffer(data);
-			  			},
-			  			error:function(error){
-			  				alert("첫번째 ajax 에러 발생:"+error);
-			  			}
-			  		}).submit();
-				}
-				
-			},
-			uploadBuffer:function(param){
-				var paramInfo = param;
-				$.ajax({
-			 		url:param.url,
-			 		method:"get",
-			 		data:{
-			 			fileNo:param.fileNo
-			 			},
-			 		success:function(data){
-		 				speechToText.speechToTextAjax(data,paramInfo);
-			 		},
-			 		error:function(error){
-		  				alert("두번째 ajax 에러 발생:"+error);
-		  			}
-			 	})
-			}
-	}
-		
-			
-		  	</script>
-
 </body>
-
 </html>

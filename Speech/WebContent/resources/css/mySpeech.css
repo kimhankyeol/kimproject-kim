@@ -17,7 +17,7 @@
 }
 
 .selPad2{
-    display: grid;r
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 5px;
     padding-left: 30px;
@@ -462,6 +462,22 @@ width:50%;
 	text-overflow:ellipsis;
 	 white-space: nowrap;
 	 overflow: hidden;
+}
+.tabSpeech{
+display:flex;
+}
+.tabSpeech .btnRegCss3{
+ 	border-radius: 20px;
+    color: #00aeef;
+    border: 1px solid #00aeef;
+  	width:33%;
+    font-size: 0.874em;
+    line-height: 1.248em;
+    letter-spacing: -0.044em;
+    text-align:center;
+    margin-top:20px;
+    padding: 22px 0px;
+    cursor:pointer;
 }
 
 /* .padLR .spcDetailTagScroll{

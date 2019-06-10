@@ -39,7 +39,7 @@ const snsLogInOut = {
 			}
 		},
 		//이 함수는 로그인 버튼 완료되었을떄 onlogin 실행
-		checkLoginState(){
+		checkLoginState:function(){
 			var name="";
 			var email="";
 			FB.getLoginStatus(function(response){

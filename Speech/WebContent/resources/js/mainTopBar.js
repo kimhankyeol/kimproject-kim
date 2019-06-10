@@ -148,4 +148,7 @@ const tagClick={
 	})
 }
 
-
+//로딩바 
+const loading = {
+		loadingHide:$('#loading').hide()
+}

@@ -34,7 +34,7 @@ const Sound = (function () {
 }());
 const speechToText = {
 		settings:{
-			"async":true,
+			"async":false,
 			"crossDomain":true,
 			"url":"https://speech.googleapis.com/v1/speech:recognize",
 			"method":"POST",
@@ -46,11 +46,46 @@ const speechToText = {
 			"processData":false,
 	},
 	speechToTextAjax:(speechBlob,param)=>{
-		speechToText.settings.data="{'config': {'encoding':'LINEAR16','sampleRateHertz': 48000, 'languageCode': 'ko-KR','enableWordTimeOffsets': false,'audioChannelCount':2}, 'audio': { 'content':'"+speechBlob+"'}}"
+		//돈 나가니까 시연할떄 풀어
+		
+		speechToText.settings.data="{'config': {'encoding':'LINEAR16','sampleRateHertz': 48000, 'languageCode': 'ko-KR','enableWordTimeOffsets': true,'audioChannelCount':2}, 'audio': { 'content':'"+speechBlob+"'}}"
 		$.ajax(speechToText.settings).done(function(response){
-			const transcript = response.results[0].alternatives[0].transcript;
-			const confidence = response.results[0].alternatives[0].confidence;
-			location.href="/speech/speechDataInsert.do?transcript="+transcript+"&confidence="+confidence+"&fileNo="+param.fileNo+"&spcNo="+param.sDTO.speechNo
+			console.log(response)
+			console.log(response.results[0].alternatives[0].words)
+			const words=response.results[0].alternatives[0].words;
+			const word = new Array();
+			const startTime = new Array();
+			const endTime = new Array();
+			const term = new Array();
+			$.each(words,function(i,item){
+				word.push(item.word);
+				startTime.push(item.startTime.slice(0,-1));
+				endTime.push(item.endTime.slice(0,-1));
+				term.push(parseFloat(item.endTime.slice(0,-1)).toFixed(4)-parseFloat(item.startTime.slice(0,-1)).toFixed(4))
+			})
+			const jsonParam = {
+					"fileNo" : param.fileNo,
+					"transcript" : response.results[0].alternatives[0].transcript,
+					"confidence" : response.results[0].alternatives[0].confidence,
+					"spcNo": param.sDTO.speechNo,
+					"word" : JSON.stringify(word),
+					"term" : JSON.stringify(term),
+					"startTime" : JSON.stringify(startTime),
+					"endTime" : JSON.stringify(endTime)
+			}
+			$.ajax({
+				url:"/speech/speechDataInsert.do",
+				method:"post",
+				data:jsonParam,
+				success:function(data){
+					alert(data.msg);
+					location.href=data.url;
+				},
+				error:function(error){
+					console.error('마지막 ajax 에러')
+				}
+			})
+			//location.href="/speech/speechDataInsert.do?transcript="+transcript+"&confidence="+confidence+"&fileNo="+param.fileNo+"&words="+words+"&spcNo="+param.sDTO.speechNo
 			
 		});
 	}
