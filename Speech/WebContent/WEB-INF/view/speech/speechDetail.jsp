@@ -62,6 +62,8 @@
 			</div>
 			<div class="btnRegCss" onclick="uploadAudioFile.uploadFileSubmit('m')" > 등록하기 </div>
 		  	<div class="btnRegCss" onclick="pageMove.answerList('<%=sDTO.getSpeechNo()%>')">질문 답변 목록 보기</div>
+			<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+			<script src="/resources/js/record.js"></script>
 		<%}else{ %>
 			
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
@@ -97,21 +99,10 @@
 		  	</div>
 		  	<div class="btnRegCss" onclick="uploadAudioFile.uploadFileSubmit('p')" > 등록하기 </div>
 		  	<div class="btnRegCss" style="margin-bottom:20px"  onclick="pageMove.answerList('<%=sDTO.getSpeechNo()%>')">질문 답변 목록 보기</div>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="/resources/js/record.js"></script>
 		<%} %> 
    </div>
-   <div onclick="siva()">asdasd</div>
-   <script>
-   function siva(){
-	 
-	   
-	   var vlist=new Array({name:'kimhan',age:28},{name:'kimhan',age:28},{name:'kimhan',age:28})
-	  console.table(vlist)
-	  var kim2=JSON.stringify(vlist);
-	   var kim3=encodeURIComponent(kim2);
-	   location.href="/test2.do?json="+kim3;
-	   
-   }
-   </script>
     <!--로딩바 -->
 <div id="loading">
 	<div id="loading-image" >

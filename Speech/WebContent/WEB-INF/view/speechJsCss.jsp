@@ -13,7 +13,6 @@
 <script src="/resources/js/restApi.js"></script>
 <script src="/resources/js/snsLogin.js"></script>
 <script src="/resources/js/mainTopBar.js"></script>
-<script src="/resources/js/record.js"></script>
 <script src="/resources/js/googleSpeech.js"></script>
 <script src="/resources/js/uploadAudioFile.js"></script>
 <script>

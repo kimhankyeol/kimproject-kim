@@ -116,8 +116,13 @@
 	U.userName AS userName,
 	F.fileNewName AS fileNewName,
 	F.regno AS regno,
+	F.fileno AS fileno,
 	A.transcript AS transcript,
-	A.confidence AS confidence
+	A.confidence AS confidence,
+	A.startTime AS startTime,
+	A.endTime AS endTime,
+	A.term AS term,
+	A.word AS word
 	FROM
 	speech S
 	INNER JOIN file F
