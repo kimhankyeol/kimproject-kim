@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.stereotype.Service;
 
 import poly.dto.AnswerDTO;
@@ -24,8 +25,9 @@ public class SpeechService implements ISpeechService{
 		// TODO Auto-generated method stub
 		String userNo = map.get("userNo");
 		String spcJobTagArrStr=Arrays.toString(spcJobTag);
-		String spcJobTitle =  map.get("spcJobTitle");
-		String spcJobQuestion =  map.get("spcJobQuestion");
+		//String spcJobTagArrStr=Arrays.toString(spcJobTag);
+		String spcJobTitle =  StringEscapeUtils.unescapeHtml4(map.get("spcJobTitle"));
+		String spcJobQuestion =  StringEscapeUtils.unescapeHtml4(map.get("spcJobQuestion"));
 		SpeechDTO sDTO = new SpeechDTO();
 		sDTO.setRegno(userNo);
 		sDTO.setSpcJobTag(spcJobTagArrStr);
