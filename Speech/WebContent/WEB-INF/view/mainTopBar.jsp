@@ -20,7 +20,7 @@
     <%} %> 
 	
 	<div class="mainMenuBarList">
-		<i class="fa fa-book" style="margin-right: 5px" onclick="pageMove.notice('')"></i>공지사항
+		<i class="fa fa-book" style="margin-right: 5px" onclick="pageMove.notice('list')"></i>공지사항
 	</div>
 	<div id="menuBarClose" class="mainMenuBarList">
 		<i class="fa fa-times" style="margin-right: 5px"></i>닫기

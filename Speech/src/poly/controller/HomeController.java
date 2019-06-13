@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,7 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import poly.dto.NoticeDTO;
 import poly.service.ILoginService;
+import poly.service.INoticeService;
 
 
 @Controller
@@ -66,5 +70,5 @@ public class HomeController {
 		model.addAttribute("msg",msg);
 		return "/alert";
 	}
-	
+
 }

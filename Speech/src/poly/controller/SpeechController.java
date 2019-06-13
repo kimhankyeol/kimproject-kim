@@ -1,10 +1,14 @@
 package poly.controller;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,8 +22,11 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +36,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.sun.net.ssl.HttpsURLConnection;
+import com.google.gson.Gson;
 
 import poly.dto.AnswerDTO;
 import poly.dto.FileDTO;
@@ -37,6 +44,7 @@ import poly.dto.SpeechDTO;
 import poly.service.ISpeechService;
 import poly.util.CmmUtil;
 import poly.util.FileUtil;
+import poly.util.StringUtil;
 
 
 @Controller
@@ -105,7 +113,6 @@ public class SpeechController {
 		SpeechDTO sDTO = new SpeechDTO();
 		sDTO.setSpeechNo(spcNo);
 		sDTO = speechService.getSpeechDetail(sDTO);
-		
 		model.addAttribute("webType",webType);
 		model.addAttribute("sDTO",sDTO);
 		sDTO=null;
@@ -185,7 +192,7 @@ public class SpeechController {
 		return FileUtil.audioToBuffer(filePath);
 	}
 	@RequestMapping(value="/speechDataInsert")
-	public @ResponseBody HashMap<String,String>  insertSpeechData(HttpServletRequest req,Model model) throws Exception{
+	public @ResponseBody HashMap<String,String> insertSpeechData(HttpServletRequest req,Model model) throws Exception{
 		String transcript = req.getParameter("transcript");
 		String confidence = req.getParameter("confidence");
 		String fileNo = req.getParameter("fileNo");
@@ -194,6 +201,7 @@ public class SpeechController {
 		String startTime = req.getParameter("startTime");
 		String endTime = req.getParameter("endTime");
 		String term = req.getParameter("term");
+		String speechNo = req.getParameter("spcNo");
 		HashMap<String,String> hMap = new HashMap<>();
 		AnswerDTO aDTO = new AnswerDTO();
 		aDTO.setTranscript(transcript);
@@ -203,6 +211,7 @@ public class SpeechController {
 		aDTO.setTerm(term);
 		aDTO.setStartTime(startTime);
 		aDTO.setEndTime(endTime);
+		aDTO.setSpeechNo(speechNo);
 		int result = speechService.insertSpeechData(aDTO);
 		String msg,url;
 		if(result==1) {
@@ -250,5 +259,41 @@ public class SpeechController {
 		model.addAttribute("aDTO",aDTO);
 		return "/speech/answerDetail";
 	}
-
+	@RequestMapping("/delete")
+	public String deleteSpeech(@RequestParam(value="spcNoArr",required=true) List<String> spcNoArr,Model model) throws Exception{
+		List<AnswerDTO> aList = new ArrayList<>();
+		AnswerDTO aDTO = new AnswerDTO();
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
+		int result4 = 0;
+		for(int i = 0 ; i<spcNoArr.size();i++) {
+			aDTO.setSpeechNo(spcNoArr.get(i));
+			aList=speechService.getAnswerList2(aDTO);
+			for(int j=0;j<aList.size();j++) {
+				File file = new File(aList.get(j).getFileNewName());
+				file.delete();
+			}
+			 result1 = speechService.deleteSpeech(aDTO);
+			 result2 = speechService.deleteAnswer(aDTO);
+			 result3 = speechService.deleteFile(aDTO);
+			 result4 = result1+result2+result3;
+			
+		}
+		String msg,url;
+		if(result4>0){
+			 msg="삭제 되었습니다.";
+			 url="/speech/mySpeechQuestion.do";
+		
+		}else {
+			 msg="삭제 되었습니다.";
+			 url="/speech/mySpeechQuestion.do";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+	return "/alert";	
+	}
+	
+	
 }

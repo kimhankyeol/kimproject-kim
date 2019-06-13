@@ -111,6 +111,7 @@
 	</select>
 	<select id="getAnswerDetail" parameterType="AnswerDTO" resultType="AnswerDTO">
 	SELECT 
+	S.speechNo AS speechNo,
 	S.spcJobTitle AS spcJobTitle,
 	S.spcJobQuestion AS spcJobQuestion,
 	U.userName AS userName,
@@ -132,6 +133,30 @@
 	INNER JOIN answer A
 	ON F.fileNo=A.fileNo
 	</select>
+	<select id="getAnswerList2" parameterType="AnswerDTO" resultType="AnswerDTO">
+	SELECT 
+	S.speechNo AS speechNo,
+	S.spcJobTitle AS spcJobTitle,
+	S.spcJobQuestion AS spcJobQuestion,
+	U.userName AS userName,
+	F.fileNewName AS fileNewName,
+	F.regno AS regno,
+	F.fileno AS fileno,
+	A.transcript AS transcript,
+	A.confidence AS confidence,
+	A.startTime AS startTime,
+	A.endTime AS endTime,
+	A.term AS term,
+	A.word AS word
+	FROM
+	speech S
+	INNER JOIN file F
+	ON F.speechNo = #{speechNo}
+	INNER JOIN user U
+	ON F.regno = U.userNo 
+	INNER JOIN answer A
+	ON F.fileNo=A.fileNo
+	</select>
 	<insert id="insertSpeechData" parameterType="AnswerDTO">
 	INSERT
 	answer
@@ -142,7 +167,8 @@
 		word,
 		term,
 		startTime,
-		endTime
+		endTime,
+		speechNo
 	)
 	values
 	(
@@ -152,8 +178,27 @@
 		#{word},
 		#{term},
 		#{startTime},
-		#{endTime}
+		#{endTime},
+		#{speechNo}
 	)
 	</insert>
+	<delete id="deleteSpeech" parameterType="SpeechDTO">
+	DELETE
+	FROM
+	speech 
+	WHERE speechNo=#{speechNo}
+	</delete>
+	<delete id="deleteFile" parameterType="SpeechDTO">
+	DELETE
+	FROM
+	file 
+	WHERE speechNo=#{speechNo}
+	</delete>
+	<delete id="deleteAnswer" parameterType="SpeechDTO">
+	DELETE
+	FROM
+	answer
+	WHERE speechNo=#{speechNo}
+	</delete>
 </mapper>
 

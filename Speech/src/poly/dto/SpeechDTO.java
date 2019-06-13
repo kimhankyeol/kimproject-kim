@@ -10,9 +10,17 @@ public class SpeechDTO {
 	private String regno;
 	private String upddate;
 	private String updno;
+	private String search;
+	
 	
 
 
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	public String getRegdate() {
 		return regdate;
 	}

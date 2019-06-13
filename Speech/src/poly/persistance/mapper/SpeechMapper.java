@@ -27,5 +27,16 @@ public interface SpeechMapper {
 	public AnswerDTO getAnswerDetail(AnswerDTO aDTO) throws Exception;
 
 	public int insertSpeechData(AnswerDTO aDTO) throws Exception;
+
+	public List<AnswerDTO> getAnswerList2(AnswerDTO aDTO) throws Exception;
+
+	public int deleteSpeech(AnswerDTO aDTO) throws Exception;
+	
+	public int deleteFile(AnswerDTO aDTO) throws Exception;
+	
+	public int deleteAnswer(AnswerDTO aDTO) throws Exception;
+
+	/*public List<SpeechDTO> getAjaxList(SpeechDTO sDTO) throws Exception;*/
+	
 	
 }

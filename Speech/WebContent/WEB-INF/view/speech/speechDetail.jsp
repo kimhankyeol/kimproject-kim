@@ -86,6 +86,7 @@
    			</div>
   			<div style="display: flex;justify-content:center;border:1px solid #dfdfdf;border-radius:10px;padding-bottom:24px;"> 
 			   <form id="uploadForm" action="/speech/insertRecord.do" method="post" enctype="multipart/form-data" >
+			   
 			   <input type="file" accept="audio/*" id="webRecorderFile" name="webRecorderFile" style="display:none"/>
 		   		<label for="webRecorderFile"  style="cursor:point" onchange="webRecorderUpload.wRecorderFileContent()">
 		  			<img src="/resources/image/filePlus.svg" style="display:table; padding-top:30px; padding-bottom:12px;margin:0px auto ;" />
@@ -93,10 +94,13 @@
 		   			<p style="color:#3990ff">녹음 된 파일은 다운로드 폴더에 저장되어있습니다.</p>
 		   			<div id="fileContent"></div>
 		   		</label>
+		   		
 		   		<input type="hidden" name="spcNo" value="<%=sDTO.getSpeechNo()%>"/>
 		   		<input type="hidden" name="webType" value="p"/>
+		   		
 		   		</form>
 		  	</div>
+		  	
 		  	<div class="btnRegCss" onclick="uploadAudioFile.uploadFileSubmit('p')" > 등록하기 </div>
 		  	<div class="btnRegCss" style="margin-bottom:20px"  onclick="pageMove.answerList('<%=sDTO.getSpeechNo()%>')">질문 답변 목록 보기</div>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

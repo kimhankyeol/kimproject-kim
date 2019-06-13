@@ -17,7 +17,13 @@ const restApiAjax ={
 };
 
 const jsonData = {
-		read : $.getJSON('/resources/json/privateInfo.json',function(data){
-		})
-		
+		read : "" 
+			/*function(){
+			var read="";
+			$.getJSON('/resources/json/privateInfo.json',function(data){
+				read=data
+			})
+			return data;
+		}*/
+			
 }

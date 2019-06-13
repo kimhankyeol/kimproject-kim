@@ -24,17 +24,38 @@
    </div>
    <div class="padLR9">
    		<div>
-	   		<select>
-	   			<option>업계별</option>
-	   			<option>날짜별</option>
+	   		<select id="selectID">
+	   			<option value="jobCtg" selected="selected">업계별</option>
+	   			<option value="day">날짜별</option>
 	   		</select>
    		</div>
    		<div>
    			<input type="text"/>
    		</div>
-   		<div>
+   		<div onclick="ajaxView()">
    			검색
    		</div>
+   		<script>
+   		function ajaxView(){
+   			var textChangeVal=$('#textChangeVal').val();
+   			
+   			$.ajax({
+   				if(textChangeVal==""){
+   					url:'/speech/ajaxList.do?search='+jobCtg
+   				}else{
+   					url:'/speech/ajaxList.do?search='+textChangeVal,
+   				}
+   				
+   				method:'get',
+   				dataType:'text',
+   				success:function(data){
+   					$('#ajaxView').html(data);
+   				}
+   				
+   			})
+   			
+   		}
+   		</script>
    </div>
    <div class="padLR82">
    		<div class="mySpcRegister" onclick="mySpcRegDel.reg()">등록</div>
@@ -45,6 +66,7 @@
    		<div style="width:50%;">제목</div>
    		<div style="width:25%;text-align: center">체크</div>
    </div>
+   <div id="ajaxView"></div>
    <%for(int i = 0 ; i <sList.size(); i++){ %>
    <div class="padLR10">
    		<div class="spcTagScroll">
@@ -59,7 +81,7 @@
    			<div><%=sList.get(i).getRegdate() %></div>
    		</div>
    		<div style="width:25%;text-align: center">
-   			<input type="checkbox" />
+   			<input type="checkbox" name="spcNo" value="<%=sList.get(i).getSpeechNo()%>" />
    		</div>
    </div>
    <%} %>

@@ -25,9 +25,6 @@
             업계별 면접 유형
         </div>
         <div class="menuList">
-            면접 분석
-        </div>
-        <div class="menuList">
             광고영역
         </div>
     </div>

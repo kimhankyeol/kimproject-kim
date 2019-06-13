@@ -86,7 +86,30 @@ public class SpeechService implements ISpeechService{
 		// TODO Auto-generated method stub
 		return speechMapper.insertSpeechData(aDTO);
 	}
-	
+
+	@Override
+	public List<AnswerDTO> getAnswerList2(AnswerDTO aDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return speechMapper.getAnswerList2(aDTO);
+	}
+
+	@Override
+	public int deleteSpeech(AnswerDTO aDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return speechMapper.deleteSpeech(aDTO);
+	}
+
+	@Override
+	public int deleteAnswer(AnswerDTO aDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return speechMapper.deleteAnswer(aDTO);
+	}
+
+	@Override
+	public int deleteFile(AnswerDTO aDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return speechMapper.deleteFile(aDTO);
+	}
 	
 	
 }

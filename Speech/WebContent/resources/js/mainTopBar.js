@@ -44,15 +44,31 @@ const mySpcRegDel = {
 		del : function(){
 			mySpcRegDel.mySpcRegister[0].classList.remove('selActive');
 			mySpcRegDel.mySpcDelete[0].classList.add('selActive');
+			if($('input[name=spcNo]:checked').length==0){
+				alert('삭제할 대상이 선택되지 않았습니다.');
+				return false;
+			}else{
+				var spcNoArr=[];
+				$('input[name=spcNo]:checked').each(function(index){
+					spcNoArr.push($(this).val());
+				})
+				console.log(spcNoArr)
+				location.href="/speech/delete.do?spcNoArr="+spcNoArr;
+			}
 		}
 }
-
+$('#selectID').change(function(){
+	$('#textChangeVal').val($('#selectID option:selected').val())
+})
 const pageMove = {
 		singleParam:function(urlName){
 			location.href="/"+urlName+".do";
 		},
 		speech:function(urlName){
 			location.href="/speech/"+urlName+".do";
+		},
+		speechDelete:function(urlName,param){
+			location.hred="/speech/"+urlName+".do?spcNo="+param;
 		},
 		notice:function(urlName){
 			location.href="/notice/"+urlName+".do";
@@ -81,7 +97,6 @@ const pageMove = {
 			}
 		}
 }
-
 const frmSubmit = {
 		spcInsert : document.getElementById('spcInsert'),
 		spcJobTag : document.getElementsByName('spcJobTag'),
