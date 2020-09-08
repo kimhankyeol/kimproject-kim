@@ -18,6 +18,7 @@ OPEN API : Google Speech API( STT , TTS) , ETRI OPEN API(형태소 분석) <br>
 이 프로젝트를 기반으로 한 새 프로젝트를 만들어 2019년 한이음 공모전에 출품하고, 장려상을 수상함
 
 Dr.Speech의 면접 제작소<br>
+<video src="https://youtu.be/3opEAilcoh8"></video>
 https://youtu.be/3opEAilcoh8
 <br>
 <br>
