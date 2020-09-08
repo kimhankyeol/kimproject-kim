@@ -1,2 +1,2 @@
 * linguist-vendored
-*.css linguist-vendored=false
+/Speech/WebContent/resources/css/*.css linguist-vendored=false
