@@ -19,11 +19,13 @@ OPEN API : Google Speech API( STT , TTS) , ETRI OPEN API(형태소 분석) <br>
 
 Dr.Speech의 면접 제작소<br>
 [![Watch the video](https://i.ytimg.com/an_webp/3opEAilcoh8/mqdefault_6s.webp?du=3000&sqp=CKSm4PoF&rs=AOn4CLBRp5SukXS3UtuT5MDmpX5FcPyk1A)
+<br>
 https://youtu.be/3opEAilcoh8
 <br>
 <br>
 빅데이터 분석을 활용한 음성 인식 스피치 교정 애플리케이션<br>
 [![Watch the video](https://i.ytimg.com/an_webp/t0cO5Xgqrc0/mqdefault_6s.webp?du=3000&sqp=CKy44PoF&rs=AOn4CLCWLmYxJ1dsiCM4fMA8EArORVBhMg)
+<br>
 https://youtu.be/3opEAilcoh8
 <br>
 
